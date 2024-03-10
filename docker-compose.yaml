@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  frontend:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    container_name: frontend
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+    restart: always
+    volumes:
+      - ./client:/var/www/client
+      - client-data:/var/www/client/build
+
+  webserver:
+    container_name: webserver
+    restart: unless-stopped
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - client-data:/usr/share/nginx/html
+    depends_on:
+      - frontend
+
+volumes:
+  client-data:
+
+  
