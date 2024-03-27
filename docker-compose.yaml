@@ -59,7 +59,6 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=test
     volumes:
       - db-data:/var/lib/postgresql/data/
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   pgadmin:
     image: dpage/pgadmin4
