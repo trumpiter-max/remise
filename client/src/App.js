@@ -17,6 +17,12 @@ import '@fontsource/roboto/700.css';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
+
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import SignIn from './resources/page/login/SignIn';
+import SignUp from './resources/page/login/SignUp';
+import ResetPassword from './resources/page/login/ResetPassword';
+/*
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -29,9 +35,10 @@ function Copyright() {
     </Typography>
   );
 }
-
+*/
 function App() {
   return (
+    /*
     <div className="App">
       <CssBaseline />
       <header className="App-header">
@@ -42,6 +49,16 @@ function App() {
       </header> 
       <Copyright />
     </div>
+    */
+   <div>
+    <Router>
+      <Routes>
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+      </Routes>
+    </Router>
+   </div>
   );
 }
 
