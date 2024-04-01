@@ -1,46 +1,28 @@
 import React from 'react';
-import logo from './resources/images/logo.svg';
 import './App.css';
-
-// Material components
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import { makeStyles } from '@emotion/styled';
-
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-
-import CssBaseline from '@mui/material/CssBaseline';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright of '}
-      <Link color="inherit" href="#">
-        Remise
-      </Link>{'© '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { routes } from './routes';
+import DefaultComponent from './components/DefaultComponent/DefaultComponent';
+import { Fragment } from 'react';
 
 function App() {
   return (
     <div className="App">
-      <CssBaseline />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello From Docker For React
-        </p>
-      </header> 
-      <Copyright />
+      <Router>
+        <Routes>
+        { routes.map((route) =>{
+          const Page=route.page;
+          const Layout = route.isShowHeader? DefaultComponent:Fragment;
+          return (
+            <Route key={route.path} path={route.path} element={
+              <Layout>
+                <Page />
+              </Layout>
+            } />
+            )
+        })}
+        </Routes>
+      </Router>
     </div>
   );
 }
