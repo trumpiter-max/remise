@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './resources/images/logo.svg';
 import './App.css';
 
 // Material components
@@ -24,34 +23,33 @@ import SignUp from './resources/page/login/SignUp';
 import ResetPassword from './resources/page/login/ResetPassword';
 import UserPage from './resources/page/user/UserPage';
 import CompareProduct from './resources/page/CompareProduct';
-/*
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright of '}
-      <Link color="inherit" href="#">
-        Remise
-      </Link>{'© '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-*/
+
+
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { routes } from './routes';
+import DefaultComponent from './components/DefaultComponent/DefaultComponent';
+import { Fragment } from 'react';
+
 function App() {
   return (
-   <div>
-    <Router>
-      <Routes>``
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/user-page" element={<UserPage/>} />
-        <Route path="/compare" element={<CompareProduct/>} />
-      </Routes>
-    </Router>
-   </div>
+    <div className="App">
+      <Router>
+        <Routes>
+        { routes.map((route) =>{
+          const Page=route.page;
+          const Layout = route.isShowHeader? DefaultComponent:Fragment;
+          return (
+            <Route key={route.path} path={route.path} element={
+              <Layout>
+                <Page />
+              </Layout>
+            } />
+            )
+        })}
+        </Routes>
+      </Router>
+    </div>
   );
-}
+      }
 
 export default App;
