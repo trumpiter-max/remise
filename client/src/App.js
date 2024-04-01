@@ -22,6 +22,8 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import SignIn from './resources/page/login/SignIn';
 import SignUp from './resources/page/login/SignUp';
 import ResetPassword from './resources/page/login/ResetPassword';
+import UserPage from './resources/page/user/UserPage';
+import CompareProduct from './resources/page/CompareProduct';
 /*
 function Copyright() {
   return (
@@ -38,24 +40,14 @@ function Copyright() {
 */
 function App() {
   return (
-    /*
-    <div className="App">
-      <CssBaseline />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello From Docker For React
-        </p>
-      </header> 
-      <Copyright />
-    </div>
-    */
    <div>
     <Router>
-      <Routes>
+      <Routes>``
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/user-page" element={<UserPage/>} />
+        <Route path="/compare" element={<CompareProduct/>} />
       </Routes>
     </Router>
    </div>
