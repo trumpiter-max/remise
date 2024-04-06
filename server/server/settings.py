@@ -26,8 +26,12 @@ SECRET_KEY = 'django-insecure-&%b)m95ts^a-maxymf__2r0#=ykq#rn%__j#%k7=a8dptj7-m_
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost',
+    'http://127.0.0.1',
+]
 
-
+CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -36,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework_simplejwt',
-    'tokens'
+    'django.contrib.staticfiles',  
+    'rest_framework',
+    'corsheaders',
+    'authentication.apps.AuthenticationConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -87,6 +93,20 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# User model
+AUTH_USER_MODEL = 'authentication.AppUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+
 
 
 # Password validation
