@@ -21,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-&%b)m95ts^a-maxymf__2r0#=ykq#rn%__j#%k7=a8dptj7-m_"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv('DEBUG') == 'True':
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -83,11 +86,11 @@ WSGI_APPLICATION = "server.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "remisedb",
-        "USER": "postgres",
-        "PASSWORD": "lequocanh04",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.getenv('POSTGRES_DB'),
+        "USER": os.getenv('POSTGRES_USER'),
+        "PASSWORD": os.getenv('POSTGRES_PASSWORD'),
+        "HOST": os.getenv('POSTGRES_HOST'),
+        "PORT": os.getenv('POSTGRES_PORT'),
     }
 }
 
@@ -127,6 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -134,6 +138,6 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+STATICFILES_DIRS = [ 
+    BASE_DIR/STATIC_URL, 
 ]
