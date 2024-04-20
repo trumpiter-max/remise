@@ -16,8 +16,6 @@ import '@fontsource/roboto/700.css';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
-
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import SignIn from './resources/page/login/SignIn';
 import SignUp from './resources/page/login/SignUp';
 import ResetPassword from './resources/page/login/ResetPassword';
