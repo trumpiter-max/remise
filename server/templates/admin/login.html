@@ -2,8 +2,9 @@
 {% load i18n static %}
 
 {% block extrastyle %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static "admin/css/login.css" %}">
+
+    {{ block.super }} 
+    <link rel="stylesheet" href="{% static 'admin/css/login.css' %}">
     {{ form.media }}
 {% endblock %}
 

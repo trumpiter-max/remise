@@ -3,3 +3,7 @@ gunicorn
 djangorestframework 
 markdown  
 django-filter
+django-cors-headers
+psycopg2-binary
+psycopg-binary
+requests
