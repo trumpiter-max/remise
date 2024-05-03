@@ -151,18 +151,19 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
+STATIC_URL = '/static/'
 
-STATIC_URL = "static/"
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = '/var/www/server/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+# Ensure that the STATICFILES_DIRS list does not contain the STATIC_ROOT
+STATICFILES_DIRS = [
+    # Your other directories containing static files for development
+    # Example: BASE_DIR / 'assets',
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-STATICFILES_DIRS = [ 
-    BASE_DIR/STATIC_URL, 
-]
+

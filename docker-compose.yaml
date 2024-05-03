@@ -91,6 +91,8 @@ services:
       - pgadmin4
     networks:
       - remise-network
+    volumes:
+      - ./server:/var/www/server
 
 volumes:
   # client-data:
