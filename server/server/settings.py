@@ -30,20 +30,25 @@ if os.getenv('DEBUG') == 'True':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = []
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost',
+    'http://127.0.0.1',
+]
 
-
+CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "rest_framework",
-    "corsheaders",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',  
+    'rest_framework',
+    'corsheaders',
+    'authentication.apps.AuthenticationConfig',
     "management.apps.ManagementConfig",
 ]
 
@@ -78,8 +83,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "server.wsgi.application"
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
+WSGI_APPLICATION = 'server.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -94,6 +104,20 @@ DATABASES = {
         "PORT": os.getenv('POSTGRES_PORT'),
     }
 }
+
+
+# User model
+AUTH_USER_MODEL = 'authentication.AppUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+
 
 
 # Password validation
