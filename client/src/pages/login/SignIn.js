@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,32 +12,35 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="#">
-        Remise
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { login } from '../../api/signinapi';
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const [loginError, setLoginError] = useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    try {
+      const response = await login({ email, password });
+      if (response.success) {
+        // Đăng nhập thành công
+        console.log('Đăng nhập thành công');
+        setLoginError(false);
+        // Redirect hoặc thực hiện các hành động cần thiết sau khi đăng nhập thành công
+      } else {
+        // Đăng nhập thất bại
+        console.log('Đăng nhập thất bại');
+        setLoginError(true);
+      }
+    } catch (error) {
+      console.error('Đã xảy ra lỗi khi đăng nhập:', error);
+      setLoginError(true);
+    }
   };
 
   return (
@@ -52,9 +55,6 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-        <Typography>
-            <h1>REMISE</h1>
-        </Typography>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -86,6 +86,11 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            {loginError && (
+              <Typography variant="body2" color="error">
+                Email hoặc mật khẩu không đúng
+              </Typography>
+            )}
             <Button
               type="submit"
               fullWidth
@@ -96,19 +101,18 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/reset-password" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

@@ -8,7 +8,7 @@ import logo from '../../resources/images/logo_remise.png';
 import HeroPage from './HeroPage';
 
 const logoStyle={
-  width: '100px',
+  width: '50px',
   height: 'auto',
   cursor: 'pointer',
 };
@@ -123,7 +123,7 @@ function HeaderComponent() {
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                   <MenuItem
                     onClick={() => scrollToSection('flash-sale')}
-                    sx={{ py: '6px', px: '12px' }}
+                    sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary" >
                       Flash Sale
@@ -131,7 +131,7 @@ function HeaderComponent() {
                   </MenuItem>
                   <MenuItem
                     onClick={() => scrollToSection('highlights')}
-                    sx={{ py: '6px', px: '12px' }}
+                    sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
                       Best Selling Products
@@ -139,7 +139,7 @@ function HeaderComponent() {
                   </MenuItem>
                   <MenuItem
                     onClick={() => scrollToSection('pricing')}
-                    sx={{ py: '6px', px: '12px' }}
+                    sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
                       Deals of the Day
@@ -173,7 +173,17 @@ function HeaderComponent() {
                   variant="text"
                   size="small"
                   component="a"
-                  href="/signin"
+                  href="/searchform/"
+                  target="_blank"
+                >
+                  Fillter
+                </Button>
+                  <Button
+                  color="primary"
+                  variant="text"
+                  size="small"
+                  component="a"
+                  href="/signin/"
                   target="_blank"
                 >
                   Sign in
@@ -183,7 +193,7 @@ function HeaderComponent() {
                   variant="contained"
                   size="small"
                   component="a"
-                  href="/signup"
+                  href="signup"
                   target="_blank"
                 >
                   Sign up
