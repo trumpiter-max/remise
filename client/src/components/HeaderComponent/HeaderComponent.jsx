@@ -6,6 +6,8 @@ import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import logo from '../../resources/images/logo_remise.png';
 import HeroPage from './HeroPage';
+import ProductFeature from '../Product/ProductFeature';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const logoStyle={
   width: '50px',
@@ -58,9 +60,10 @@ function handleClickLogo(){
 }
 
 function HeaderComponent() {
-  const [auth, setAuth]= useState(true);
+  const [auth, setAuth]= useState(false);
   const scrollToSection = (sectionId) => {
     const sectionElement = document.getElementById(sectionId);
+    // const offset = 0;
     const offset = 128;
     if (sectionElement) {
       const targetScroll = sectionElement.offsetTop - offset;
@@ -72,7 +75,6 @@ function HeaderComponent() {
       // setOpen(false);
     }
   };
-
   return (
       <div>
         <AppBar
@@ -130,7 +132,7 @@ function HeaderComponent() {
                     </Typography>
                   </MenuItem>
                   <MenuItem
-                    onClick={() => scrollToSection('highlights')}
+                    onClick={() => scrollToSection('best-sale')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
@@ -138,7 +140,7 @@ function HeaderComponent() {
                     </Typography>
                   </MenuItem>
                   <MenuItem
-                    onClick={() => scrollToSection('pricing')}
+                    onClick={() => scrollToSection('deal')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
@@ -166,9 +168,7 @@ function HeaderComponent() {
               }}
             >
                 {/* <ToggleColorMode/> */}
-              {auth&&
-                <div>
-                  <Button
+                <Button
                   color="primary"
                   variant="text"
                   size="small"
@@ -178,6 +178,9 @@ function HeaderComponent() {
                 >
                   Fillter
                 </Button>
+                {!auth&&
+                <div>
+                  
                   <Button
                   color="primary"
                   variant="text"
@@ -199,6 +202,9 @@ function HeaderComponent() {
                   Sign up
                 </Button>
                 </div>
+              }
+              {auth&&
+                  <AccountCircleIcon color='primary'/>
               }
             </Box>
             </Toolbar>
