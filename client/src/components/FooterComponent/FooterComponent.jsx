@@ -8,7 +8,7 @@ import TwitterIcon from '@mui/icons-material/X';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const logoStyle = {
-    width: '140px',
+    width: '70px',
     height: 'auto',
   };
 
@@ -17,7 +17,7 @@ function Copyright() {
     return (
       <Typography variant="body2" color="text.secondary" mt={1}>
         {'Copyright © '}
-        <Link href="https://mui.com/">Remise&nbsp;</Link>
+        <Link href="/">Remise&nbsp;</Link>
         {new Date().getFullYear()}
       </Typography>
     );
@@ -51,8 +51,8 @@ function FooterComponent() {
           minWidth: { xs: '100%', sm: '60%' },
         }}
       >
-        <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-          <Box sx={{ ml: '-22px' }}>
+        <Box sx={{ width: { xs: '100%', sm: '60%' }}}>
+          <Box sx={{ ml: '-22px', marginLeft: '0px'}}>
             <img
               src={logo}
               style={logoStyle}
@@ -63,7 +63,7 @@ function FooterComponent() {
             NHÓM 8
           </Typography>
           <Typography variant="body2" color="text.secondary" mb={2}>
-            Subscribe to our newsletter for weekly updates and promotions.
+            Đăng ký nhận bản tin của chúng tôi để biết thông tin cập nhật và khuyến mãi hàng tuần.
           </Typography>
         </Box>
       </Box>

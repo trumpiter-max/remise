@@ -29,7 +29,8 @@ function ProductPage() {
           </Stack>
           <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
         </div>
-        <div className='product-inform' style={{display:'flex', flexDirection:'column'}}>
+
+        <div className='product-inform' style={{display:'flex', flexDirection:'column', marginRight: '-30px'}}>
           <div className='location'>
             <h7>Hồ Chí Minh, Quận 1, Phường Phạm Ngũ Lão</h7>
             <Button>Thay đổi</Button>
@@ -43,7 +44,7 @@ function ProductPage() {
         </div>
       </div>
       <TablePaginationDemo/>
-      <div className='product-similar'>
+      <div className='product-similar' >
         <h5>Các sản phẩm tương tự</h5>
         <ProductFlashSale/>
       </div>

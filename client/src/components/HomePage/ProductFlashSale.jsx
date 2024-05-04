@@ -15,7 +15,7 @@ const products = [
 // Component Card
 const ProductCard = ({ product }) => {
     return (
-        <Card style={{width:"25%"}}>
+        <Card style={{width:"25%"}} mb={1}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
 const ProductList = () => {
   
     return (
-      <div className="product-list" style={{display:'flex', flexDirection: 'row',  width: "100%", flexWrap:'wrap'}}>
+      <div className="product-list" style={{display:'flex', flexDirection: 'row',  width: "100%", flexWrap:'wrap',}}>
         {products.map((product, index) => (
           <ProductCard key={index} product={product} />
         ))}

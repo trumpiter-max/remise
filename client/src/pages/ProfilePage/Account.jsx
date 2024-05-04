@@ -4,10 +4,10 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import ModeEditRoundedIcon from '@mui/icons-material/ModeEditRounded';
-import ProductFlashSale from '../../../components/HomePage/ProductFlashSale'
-import { Stack } from '@mui/material';
+import AccountDetail from '../../components/AccountDetail/AccountDetail';
+import { Stack, Typography } from '@mui/material';
 
-function ProfilePage() {
+function Account() {
   return (
     <div className='profile'>
       <div className='left-side-bar'>
@@ -17,7 +17,7 @@ function ProfilePage() {
         </div>
         <div className='account left-side-bar-item'>
           <AccountCircleIcon color='primary'/>
-          <h7>Account</h7>
+          <h7><Typography variant ="h7" color = "red">Account</Typography></h7>          
         </div>
         <div className='store left-side-bar-item'>
           <LocalGroceryStoreIcon color='primary' />
@@ -33,35 +33,12 @@ function ProfilePage() {
         </div>
       </div>
       <div className='profile-body'>
-        <SearchInput></SearchInput>
         <Stack spacing={2}>
-          <ProductFlashSale/>
-          <ProductFlashSale/>
-          <ProductFlashSale/>
+            <AccountDetail/>
         </Stack>
       </div>
     </div>
   )
 }
 
-const SearchInput = () => {
-  return (
-    <div className="search-container">
-      <input
-        type="text"
-        placeholder="Tìm kiếm..."
-        style={{
-          borderRadius: '5px',
-          padding: '8px',
-          border: '1px solid #ccc',
-          width: '50%',
-          marginRight: '5px',
-          marginTop: '8px',
-          marginBottom: '8px',
-        }}
-      />
-    </div>
-  );
-};
-
-export default ProfilePage
+export default Account

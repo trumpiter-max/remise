@@ -1,0 +1,43 @@
+#body{
+    background-color: #f7f7f7;
+    margin: 20px 15% 10px 15%;
+    padding-bottom: 50px;
+}
+.sub-banner{
+    width: 95%;
+    height: 170px;
+}
+
+.sale{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 10px;
+}
+
+.sale-bar{
+    background-color: #78B9EC;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.sale-bar h2{
+    color: white;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+
+
+.sale-time .time{
+    background-color: #333;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: 500;
+    height: auto;
+    color: white;
+    width: 36px;
+    text-align: center;
+}

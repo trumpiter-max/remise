@@ -10,7 +10,6 @@ import SearchForm from "../components/FillterProduct/SearchForm";
 import Chart from "../pages/ProductPage/Chart";
 import Dashboard from "../pages/ProductPage/Dashboard";
 import Account from "../pages/UserPages/ProfilePage/Account";
-import NoticePage from "../pages/UserPages/ProfilePage/Notice";
 export const routes=[
     {
         path:'/',
@@ -25,7 +24,7 @@ export const routes=[
     {
         path:'/profile',
         page: ProfilePage,
-        isShowHeader:false,
+        isShowHeader:true,
     },
     {
         path:'/reset-password',
@@ -60,11 +59,6 @@ export const routes=[
     {
         path:'/account',
         page: Account,
-        isShowHeader:false,
-    },
-    {
-        path:'/notice',
-        page: NoticePage,
         isShowHeader:false,
     },
     {

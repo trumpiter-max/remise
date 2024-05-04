@@ -4,7 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import ModeEditRoundedIcon from '@mui/icons-material/ModeEditRounded';
-import ProductFlashSale from '../../../components/HomePage/ProductFlashSale'
+import ProductFlashSale from '../../components/HomePage/ProductFlashSale'
 import { Stack } from '@mui/material';
 
 function ProfilePage() {

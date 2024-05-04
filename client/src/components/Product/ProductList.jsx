@@ -8,6 +8,7 @@ function ProductList({productList,type}) {
     switch (type){
       case 1:
         return <ProductItem productItem={productItem} />;
+
     }
   }
   return (

@@ -15,8 +15,13 @@ export default function Deposits() {
         $3,024.00
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
-        on 15 March, 2019
+        15/03/2024
       </Typography>
+      <div>
+        <Link color="primary" href="#" onClick={preventDefault}>
+          Đến nơi bán
+        </Link>
+      </div>
     </React.Fragment>
   );
 }
