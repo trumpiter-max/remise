@@ -1,5 +1,9 @@
 from django.db import models
 from django.db.models import Avg
+from django.utils import timezone
+import datetime
+import os
+from django.db import connection
 
 class Role(models.Model):
     name = models.CharField(max_length=20)
@@ -15,34 +19,26 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     deleted = models.IntegerField()
 
-
-class Tokens(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    token = models.CharField(max_length=32)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-
 class Category(models.Model):
     name = models.CharField(max_length=100)
-
-
+    
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=500)
     price = models.IntegerField()
     discount = models.IntegerField()
+    discount_rate = models.IntegerField()
     thumbnail = models.CharField(max_length=500)
     description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted = models.IntegerField()
-    rank_id = models.IntegerField()
-
+    url = models.CharField(max_length=200)
+    timestamp =  models.CharField(max_length=200)
+    #updated_at = models.DateTimeField(auto_now=True)   
+    #deleted = models.IntegerField()
+    #rank_id = models.IntegerField()
 
 class Galery(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     thumbnail = models.CharField(max_length=500)
-
 
 class FeedBack(models.Model):
     firstname = models.CharField(max_length=30)
@@ -63,8 +59,15 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
 class Rank(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
     average_rating = models.FloatField(default=0)
     feedback_count = models.IntegerField(default=0)
+
+def execute_sql_file(file_path):
+    with open(file_path, 'r') as sql_file:
+        sql_statements = sql_file.read()
+        with connection.cursor() as cursor:
+            cursor.execute(sql_statements)
+
+execute_sql_file('/var/www/server/crawler/remise.sql')

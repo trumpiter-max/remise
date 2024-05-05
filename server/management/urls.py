@@ -3,7 +3,6 @@ from rest_framework import routers
 from .views import (
     RoleViewSet,
     UserViewSet,
-    TokensViewSet,
     CategoryViewSet,
     ProductViewSet,
     GaleryViewSet,
@@ -14,7 +13,6 @@ from .views import (
 router = routers.DefaultRouter()
 router.register('roles', RoleViewSet)
 router.register('users', UserViewSet)
-router.register('tokens', TokensViewSet)
 router.register('categories', CategoryViewSet)
 router.register('products', ProductViewSet)
 router.register('galeries', GaleryViewSet)
