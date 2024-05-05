@@ -4,7 +4,6 @@ import SliderComponent from '../../components/SliderComponent/SliderComponent';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import { Divider, Grid, Typography} from '@mui/material';
 import ProductFeature from '../../components/Product/ProductFeature';
-import HeroPage from '../../components/HeaderComponent/HeroPage';
 import Category from '../../components/HeaderComponent/Category/Category';
 import { useEffect } from 'react';
 

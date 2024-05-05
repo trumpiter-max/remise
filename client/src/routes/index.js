@@ -7,9 +7,10 @@ import SignIn from "../pages/login/SignIn";
 import SignUp from "../pages/login/SignUp";
 import CompareProduct from "../pages/CompareProduct";
 import SearchForm from "../components/FillterProduct/SearchForm";
-import Chart from "../pages/ProductPage/Chart";
 import Dashboard from "../pages/ProductPage/Dashboard";
 import Account from "../pages/UserPages/ProfilePage/Account";
+import Notice from "../pages/UserPages/ProfilePage/Notice";
+import EditAccount from "../pages/ProfilePage/EditAccount";
 export const routes=[
     {
         path:'/',
@@ -59,6 +60,16 @@ export const routes=[
     {
         path:'/account',
         page: Account,
+        isShowHeader:false,
+    },
+    {
+        path:'/notice',
+        page: Notice,
+        isShowHeader:false,
+    },
+    {
+        path:'/editaccount',
+        page: EditAccount,
         isShowHeader:false,
     },
     {

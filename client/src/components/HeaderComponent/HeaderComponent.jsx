@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
-import { AppBar, Button, Container, Divider, Grid, IconButton, MenuItem, Paper, Toolbar, Typography, useTheme } from '@mui/material';
+import { AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
@@ -12,7 +12,7 @@ const logoStyle={
   height: 'auto',
   cursor: 'pointer',
 };
-
+/*
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -52,6 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+*/
 
 function handleClickLogo(){
   return window.location.reload();
