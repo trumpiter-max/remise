@@ -13,9 +13,10 @@ InputField.propTypes = {
 
 function InputField(props) {
     const {form, name, label, disabled, width, marginRight,...rest}=props;
-    // const [value, setValue]=useState('');
+    const { register, formState: { errors } } = form;
     return (
         <Controller
+            disabled={disabled}
             name={name}
             control={form.control}
             render={({
@@ -23,6 +24,8 @@ function InputField(props) {
             fieldState: { invalid, isTouched, isDirty, error },
             }) => (
             <TextField
+            error={!!error}
+            helperText={error ? error.message : null}
             margin='normal'
             label={label}
             value={value}
@@ -32,7 +35,8 @@ function InputField(props) {
             sx={{width:width, mr:marginRight}}
             {...rest} // Truyền các thuộc tính bổ sung
             fullWidth
-            />)}
+            >{errors[name] && <p>{errors[name].message}</p>}</TextField>
+            )}
         />
     );
 }

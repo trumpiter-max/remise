@@ -60,12 +60,12 @@ export const routes=[
     {
         path:'/account',
         page: Account,
-        isShowHeader:false,
+        isShowHeader:true,
     },
     {
         path:'/notice',
         page: Notice,
-        isShowHeader:false,
+        isShowHeader:true,
     },
     {
         path:'/editaccount',

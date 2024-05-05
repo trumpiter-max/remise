@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
-import { AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography, useTheme } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import logo from '../../resources/images/logo_remise.png';
 import HeroPage from './HeroPage';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useLocation } from 'react-router-dom';
 
 const logoStyle={
   width: '50px',
   height: 'auto',
   cursor: 'pointer',
 };
-/*
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -52,14 +54,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-*/
 
 function handleClickLogo(){
   return window.location.reload();
 }
 
 function HeaderComponent() {
-  const [auth, setAuth]= useState(true);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  const [auth, setAuth]= useState(false);
   const scrollToSection = (sectionId) => {
     const sectionElement = document.getElementById(sectionId);
     const offset = 128;
@@ -121,6 +124,7 @@ function HeaderComponent() {
                   style={logoStyle}
                   alt="logo of sitemark"
                 />
+                {isHome&&
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                   <MenuItem
                     onClick={() => scrollToSection('flash-sale')}
@@ -131,7 +135,7 @@ function HeaderComponent() {
                     </Typography>
                   </MenuItem>
                   <MenuItem
-                    onClick={() => scrollToSection('highlights')}
+                    onClick={() => scrollToSection('best-sale')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
@@ -139,7 +143,7 @@ function HeaderComponent() {
                     </Typography>
                   </MenuItem>
                   <MenuItem
-                    onClick={() => scrollToSection('pricing')}
+                    onClick={() => scrollToSection('deal')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
@@ -157,7 +161,7 @@ function HeaderComponent() {
                       <SearchIcon />
                     </IconButton>
                   </Paper>
-                </Box>
+                </Box>}
               </Box>
               <Box
               sx={{
@@ -167,7 +171,7 @@ function HeaderComponent() {
               }}
             >
                 {/* <ToggleColorMode/> */}
-              {auth&&
+              {!auth&&
                 <div>
                   <Button
                   color="primary"
@@ -201,6 +205,7 @@ function HeaderComponent() {
                 </Button>
                 </div>
               }
+              {auth&&<AccountCircleIcon color='primary'/>}
             </Box>
             </Toolbar>
           </Container>
