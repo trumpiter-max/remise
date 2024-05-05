@@ -24,9 +24,27 @@ You can run on your baremetal or cloud platform with docker:
     docker compose up
 ```
 
+To finish to setup datbase from docker container
+
+For UNIX/LINUX
+
+```sh
+    ./finishsetup.sh 
+```
+For Windows
+
+```ps
+    .\finishsetup.sh 
+```
+
+**Note** make sure you uncomment following the instructions of above file to create super user for the first time.
+
 ## Wiki
 
-You can find more details how this website works at this [wiki](https://github.com/trumpiter-max/remise/wiki).
+You can find more details how this website works at this [wiki](https://github.com/trumpiter-max/remise/wiki). We notices some highlight links that you can follow to know more:
+
+- [Design](https://github.com/trumpiter-max/remise/wiki/Design)
+- [Diagram](https://github.com/trumpiter-max/remise/wiki/Diagram)
 
 ## Any problems
 
