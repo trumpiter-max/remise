@@ -25,8 +25,6 @@ from .serializers import (
     ReviewSerializer,
 )
 
-
-
 @csrf_exempt
 def role_list(request):
     if request.method == 'GET':
@@ -41,7 +39,6 @@ def role_list(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
-
 
 @csrf_exempt
 def role_detail(request, pk):
@@ -66,17 +63,13 @@ def role_detail(request, pk):
         role.delete()
         return JsonResponse({'message': 'Role deleted successfully'}, status=204)
 
-
 class RoleViewSet(viewsets.ModelViewSet):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
 
-
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()

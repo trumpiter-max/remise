@@ -1,0 +1,31 @@
+.mgr4{
+    margin-right: 4px;
+}
+
+.header-bar{
+    background-color: #a1acea;
+    padding: 10px 0;
+}
+
+.header-item{
+    margin: 10px;
+}
+
+.logo{
+    width: 150px;
+}
+
+.search{
+    justify-content: center;
+}
+
+.log{
+    display: flex;
+    flex-direction: row;
+    letter-spacing: 1.4px;
+}
+
+.header-item .item{
+    display: flex;
+    flex-direction: row;
+}
