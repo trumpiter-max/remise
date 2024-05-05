@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            My Backend
+        {% endblock %}
+    </title>
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        {% block header %}
+        <!-- Header will go here -->
+        {% endblock %}
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Content will go here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Copyright © Remise {% now "Y" %}</p>
+    </footer>
+</body>
+</html>

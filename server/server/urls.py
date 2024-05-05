@@ -22,8 +22,13 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.conf.urls import handler404
+from .views import GenericViews
+
+handler404 = 'GenericViews.PageNotFound'
 
 urlpatterns = [
+    path('', GenericViews.Home, name='home'),
     path('admin/', admin.site.urls),
     path('api/v1/authentication/',include('authentication.urls')),
     path("api/v1/management/", include("management.urls")),
