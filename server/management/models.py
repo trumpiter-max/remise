@@ -3,13 +3,13 @@ from django.db.models import Avg
 from django.utils import timezone
 import datetime
 import os
-from django.db import connection
 
 class Role(models.Model):
     name = models.CharField(max_length=20)
 
 class User(models.Model):
     fullname = models.CharField(max_length=50)
+    username = models.CharField(max_length=20)
     email = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=20)
     address = models.CharField(max_length=200)
@@ -63,11 +63,3 @@ class Rank(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
     average_rating = models.FloatField(default=0)
     feedback_count = models.IntegerField(default=0)
-
-def execute_sql_file(file_path):
-    with open(file_path, 'r') as sql_file:
-        sql_statements = sql_file.read()
-        with connection.cursor() as cursor:
-            cursor.execute(sql_statements)
-
-execute_sql_file('/var/www/server/crawler/remise.sql')
