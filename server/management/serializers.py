@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Role, User, Category, Product, Galery, FeedBack,Review,Rank
+from .models import Role, User, Category, Product, Galery, FeedBack, Review, Rank
 
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
