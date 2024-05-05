@@ -73,3 +73,13 @@ class Rank(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
     average_rating = models.FloatField(default=0)
     feedback_count = models.IntegerField(default=0)
+
+import os
+from django.db import connection
+def execute_sql_file(file_path):
+    with open(file_path, 'r') as sql_file:
+        sql_statements = sql_file.read()
+        with connection.cursor() as cursor:
+            cursor.execute(sql_statements)
+
+execute_sql_file('D:\\remise\\server\\crawler\\remise.sql')
