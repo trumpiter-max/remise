@@ -5,7 +5,6 @@ import ProfilePage from "../pages/UserPages/ProfilePage/ProfilePage";
 import ResetPassword from "../pages/login/ResetPassword";
 import SignIn from "../pages/login/SignIn";
 import SignUp from "../pages/login/SignUp";
-import CompareProduct from "../pages/CompareProduct";
 import SearchForm from "../components/FillterProduct/SearchForm";
 import Dashboard from "../pages/ProductPage/Dashboard";
 import Account from "../pages/UserPages/ProfilePage/Account";
@@ -40,11 +39,6 @@ export const routes=[
     {
         path:'/signup',
         page: SignUp,
-        isShowHeader:false,
-    },
-    {
-        path:'/compare',
-        page: CompareProduct,
         isShowHeader:false,
     },
     {
