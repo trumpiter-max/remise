@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../../resources/images/logo_remise.png'
-import { Box, Button, Container, Link, Stack,  Typography } from '@mui/material';
+import { Box, Container, Link, Stack,  Typography } from '@mui/material';
 
 const logoStyle = {
     width: '70px',

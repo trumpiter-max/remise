@@ -3,15 +3,10 @@ import axiosClient from "./axiosClient";
 export const getFlashSaleProduct=async()=>{
     try {
         // const response = await axiosClient.post("/signup", user);
-        const response = await axiosClient.get("/productFlashSale");
+        const response = await axiosClient.get("/management/products");
         return response.data;
     } catch (err) {
-        return {
-            message: {
-                msgBody: "Tao tai khoan khong thanh cong",
-                msgError: true,
-            },
-            err,
-        };
+        console.log()('Error fetching flash sale products:', err);
+        throw err; // Ném lỗi để phần gọi biết
     }
 }

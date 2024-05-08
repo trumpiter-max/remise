@@ -29,23 +29,40 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 
-
-
-// const handleSignupSubmit=(data)=>{
-//   console.log('ok');
-//   console.log('Form submit from SignUp: ', data);
-//   // console.log('Form submit: ', data);
-//   //hàm test form
+// const handleSignupSubmit=async(value)=>{
+//   const { username, email, password } = value;
+  // const signUpData={
+  //   email,
+  //   username,
+  //   password
+  // }
+//   console.log('Form submitt: ', JSON.stringify(signUpData));
+//   register(JSON.stringify(signUpData));
+//   try {
+//     // const response = await axiosClient.post('api/signup', value);
+//     const response = await register(JSON.stringify(signUpData));
+//     console.log('Registration successful: ', response);
+//   }
+//   catch(error){
+//     console.log('Error during registration: ', error);
+//   }
+//   // khi submit gọi hàm này
 // };
 export default function SignUp() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState('');
   const handleSignupSubmit=async(value)=>{
-    console.log('Form submitt: ', JSON.stringify(value));
-    register(JSON.stringify(value));
+    const { username, email, password } = value;
+    const signUpData={
+      email,
+      username,
+      password
+    }
+    console.log('Form submitt: ', JSON.stringify(signUpData));
+    register(JSON.stringify(signUpData));
     try {
       // const response = await axiosClient.post('api/signup', value);
-      const response = await register(JSON.stringify(value));
+      const response = await register(JSON.stringify(signUpData));
       console.log('Registration successful: ', response);
       setRegisterSuccess('Here is a gentle confirmation that your action was successful.');
       setIsRegistered(true);
@@ -55,18 +72,7 @@ export default function SignUp() {
       setRegisterSuccess('Registration failed. Please try again.');
       setIsRegistered(false);
     }
-    // khi submit gọi hàm này
-  };
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
-
-  
+  }
   return (
     
     <ThemeProvider theme={defaultTheme}>
@@ -87,7 +93,7 @@ export default function SignUp() {
         {/* <Register onSubmit={console.log('OK')}/> */}
           {isRegistered && (
             <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-              {registerSuccess}
+            {registerSuccess}
             </Alert>
           )}
         </Box>

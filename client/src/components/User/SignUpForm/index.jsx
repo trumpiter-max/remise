@@ -17,15 +17,17 @@ function RegisterForm(props) {
     const schema=yup.object().shape({
         firstname: yup.string().required('Hãy điền tên').min(1, 'Hãy điền tên!'),
         lastname: yup.string().required('Please enter your lastname'),
-        email: yup.string().email('Email không tồn tại').required('Hãy điền email!'),
-        password: yup.string().min(6, 'Mật khẩu tối thiểu 6 kí tự'),
-        confpassword: yup.string().oneOf([yup.ref('password'), null], 'Mật khẩu không khớp!').required('Hãy điền mật khẩu!'),
+        username: yup.string().required('Please enter your username'),
+        email: yup.string().email('Invalid email').required('Please enter your email'),
+        password: yup.string().min(6, 'Password must be at lease 6 characters'),
+        confpassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Please confirm your password'),
     })
     const form 
         = useForm({
         defaultValues:{
             firstname:'',//khai báo hết để không bị undefinded
             lastname:'',
+            username:'',
             email:'',
             password:'',
             confpassword:'',
@@ -52,8 +54,9 @@ function RegisterForm(props) {
                 ĐĂNG KÝ TÀI KHOẢN
             </Typography>
             <form onSubmit={form.handleSubmit(submitHandler)}>
-                <InputField name="firstname" id="firstname" label ="Tên" form={form} width="48%" marginRight="4%"/>
-                <InputField name="lastname" id="lastname" label ="Họ" form={form} xs={12} sm={6} width="48%"/>
+                <InputField name="firstname" id="firstname" label ="First Name" form={form} width="48%" marginRight="4%"/>
+                <InputField name="lastname" id="lastname" label ="Last Name" form={form} xs={12} sm={6} width="48%"/>
+                <InputField name="username" id="username" label ="User Name" form={form} xs={12}/>
                 <InputField name="email" id="email" label ="Email" form={form} xs={12}/>
                 <InputField name="password" id="password" label ="Mật khẩu" form={form} type='password' autoComplete="new-password" fullWidth/>
                 <InputField name="confpassword" id="confpassword" label ="Xác nhận mật khẩu" form={form} xs={12} type='password' autoComplete="new-password"/>

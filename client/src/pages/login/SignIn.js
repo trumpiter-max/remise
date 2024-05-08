@@ -13,12 +13,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login } from '../../api/signinapi';
+import { Alert } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
   const [loginError, setLoginError] = useState(false);
-
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState('');
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -26,20 +29,31 @@ export default function SignIn() {
     const password = formData.get('password');
 
     try {
-      const response = await login({ email, password });
-      if (response.success) {
+      const response = await login(JSON.stringify({ email, password }));
+      console.log(JSON.stringify({ email, password }))
+      console.log(response.success)
+      const {message}=response;
+      // console.log(message.msgBody)
+      if (message.msgError===false) {
         // Đăng nhập thành công
         console.log('Đăng nhập thành công');
+        console.log(response)
         setLoginError(false);
+        setLoginSuccess('Here is a gentle confirmation that your action was successful.');
+        setIsRegistered(true);
         // Redirect hoặc thực hiện các hành động cần thiết sau khi đăng nhập thành công
       } else {
         // Đăng nhập thất bại
         console.log('Đăng nhập thất bại');
         setLoginError(true);
+        setLoginSuccess('Registration failed. Please try again.');
+        setIsRegistered(false);
       }
     } catch (error) {
       console.error('Đã xảy ra lỗi khi đăng nhập:', error);
       setLoginError(true);
+      setLoginSuccess('Registration failed. Please try again.');
+      setIsRegistered(false);
     }
   };
 
@@ -98,7 +112,13 @@ export default function SignIn() {
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
+              
             </Button>
+            {isRegistered && (
+              <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+              {loginSuccess}
+              </Alert>
+              )}
             <Grid container>
               <Grid item xs>
                 <Link href="/reset-password" variant="body2">

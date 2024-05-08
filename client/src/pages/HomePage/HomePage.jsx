@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import { Button, Divider, Grid, Typography} from '@mui/material';
 import ProductFeature from '../../components/Product/ProductFeature';
-import Category from '../../components/HeaderComponent/Category/Category';
+// import Category from '../../components/HeaderComponent/Category/Category';
 import { useEffect } from 'react';
-import Slider from '../../components/Slider/Slider';
+// import Slider from '../../components/Slider/Slider';
 
 import tivi from '../../resources/images/HomePage/tivi.jpg'
 import ProductList from '../../components/Product/ProductList';
@@ -35,7 +35,7 @@ function Deals() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://662f83ae43b6a7dce30fc0c3.mockapi.io/products/productFlashSale')
+    fetch('http://127.0.0.1:8000/api/v1/management/products/')
       .then(response => response.json())
       .then(data => {
         setAllProducts(data); // Lưu toàn bộ dữ liệu
@@ -44,7 +44,7 @@ function Deals() {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        setErrorMsg('Failed to load data');
+        // setErrorMsg('Failed to load data');
         setIsLoading(false);
       });
   }, []);
@@ -60,7 +60,7 @@ function Deals() {
     <div>
       <Grid mt={5} id='best-sale'>
         <Grid sx={{display: 'flex'}} mb={1}>
-          <Typography color={'primary'} sx={{mr:1}} variant='h5'>Sản Phẩm Bán Chạy</Typography>
+          <Typography color={'primary'} sx={{mr:1}} variant='h5'>Gợi ý hôm nay</Typography>
         </Grid>
         <ProductList productList={visibleProducts} type={1} />
         {errorMsg && <p className="errorMsg">{errorMsg}</p>}
@@ -100,16 +100,15 @@ function HomePage() {
   return (
     <Grid>
       <Grid m={20}>
-        <Category/>
+        {/* <Category/> */}
+        {/* <Grid>
+            <SliderComponent/> 
+        </Grid> */}
         <Grid>
-            {/* <SliderComponent/>  */}
-            <Slider images={images} />
-        </Grid>
-        <Grid>
-          <FlashSale ></FlashSale>
-          <Divider sx={{mt:2}}></Divider>
-          <BestSales></BestSales>
-          <Divider sx={{mt:2}}></Divider>
+          {/* <FlashSale ></FlashSale> */}
+          {/* <Divider sx={{mt:2}}></Divider> */}
+          {/* <BestSales></BestSales> */}
+          {/* <Divider sx={{mt:2}}></Divider> */}
           <Deals></Deals>
         </Grid>
       </Grid>
