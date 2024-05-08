@@ -4,7 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import AccountDetail from '../../../components/AccountDetail/AccountDetail'
 import { Badge, Stack, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link } from '@mui/material';
 
 function Account() {
   return (

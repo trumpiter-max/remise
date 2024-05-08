@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import { AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -6,7 +6,7 @@ import InputBase from '@mui/material/InputBase';
 import logo from '../../resources/images/logo_remise.png';
 import HeroPage from './HeroPage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const logoStyle={
   width: '50px',
@@ -54,14 +54,20 @@ const logoStyle={
 //   },
 // }));
 
-function handleClickLogo(){
-  return window.location.reload();
-}
+
 
 function HeaderComponent() {
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const [auth, setAuth]= useState(false);
+  const [currentUser, setCurrentUser] = useState(false);
+  useEffect(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setCurrentUser(user); // Đặt trạng thái từ localStorage
+    }
+  }, []);
+  // const [auth, setAuth]= useState(false);
   const scrollToSection = (sectionId) => {
     const sectionElement = document.getElementById(sectionId);
     const offset = 128;
@@ -76,6 +82,17 @@ function HeaderComponent() {
     }
   };
 
+  const navigate = useNavigate(); // Tạo hàm điều hướng
+
+  const handleIconClick = () => {
+    // Kiểm tra nếu currentUser tồn tại, chuyển hướng đến trang mong muốn
+    if (currentUser) {
+      navigate('/profile'); // Chuyển hướng đến trang Profile
+    }
+  };
+  const handleClickLogo=()=>{
+    navigate('..');
+  }
   return (
       <div>
         <AppBar
@@ -170,7 +187,7 @@ function HeaderComponent() {
               }}
             >
                 {/* <ToggleColorMode/> */}
-              {!auth&&
+              {!currentUser&&
                 <div>
                   <Button
                   color="primary"
@@ -204,7 +221,7 @@ function HeaderComponent() {
                 </Button>
                 </div>
               }
-              {auth&&<AccountCircleIcon color='primary'/>}
+              {currentUser&&<AccountCircleIcon style={{cursor:'pointer'}} onClick={handleIconClick} color='primary'/>}
             </Box>
             </Toolbar>
           </Container>

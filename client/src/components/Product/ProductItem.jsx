@@ -19,7 +19,8 @@ function ProductItem({ productItem }) {
             sx={{display:'-webkit-box', WebkitBoxOrient: 'vertical', // Đặt hướng là dọc
             WebkitLineClamp: 2, // Giới hạn số dòng
             overflow: 'hidden', // Cắt bớt nội dung tràn
-            textOverflow: 'ellipsis',}}
+            textOverflow: 'ellipsis',
+            minHeight:'3em'}}
             overflow={'hidden'}
             >
               {productItem.title}
@@ -27,7 +28,7 @@ function ProductItem({ productItem }) {
             <Typography variant="body2" color="text.secondary">
               {productItem.price} VND
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" >
               {productItem.discount_rate} VND
             </Typography>
           </CardContent>
