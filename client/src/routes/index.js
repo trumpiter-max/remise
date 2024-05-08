@@ -5,11 +5,11 @@ import ProfilePage from "../pages/UserPages/ProfilePage/ProfilePage";
 import ResetPassword from "../pages/login/ResetPassword";
 import SignIn from "../pages/login/SignIn";
 import SignUp from "../pages/login/SignUp";
-import CompareProduct from "../pages/CompareProduct";
 import SearchForm from "../components/FillterProduct/SearchForm";
-import Chart from "../pages/ProductPage/Chart";
 import Dashboard from "../pages/ProductPage/Dashboard";
 import Account from "../pages/UserPages/ProfilePage/Account";
+import Notice from "../pages/UserPages/ProfilePage/Notice";
+import EditAccount from "../pages/ProfilePage/EditAccount";
 export const routes=[
     {
         path:'/',
@@ -42,11 +42,6 @@ export const routes=[
         isShowHeader:false,
     },
     {
-        path:'/compare',
-        page: CompareProduct,
-        isShowHeader:false,
-    },
-    {
         path:'/searchform',
         page: SearchForm,
         isShowHeader:false,
@@ -59,6 +54,16 @@ export const routes=[
     {
         path:'/account',
         page: Account,
+        isShowHeader:true,
+    },
+    {
+        path:'/notice',
+        page: Notice,
+        isShowHeader:true,
+    },
+    {
+        path:'/editaccount',
+        page: EditAccount,
         isShowHeader:false,
     },
     {

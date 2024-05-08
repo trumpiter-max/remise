@@ -11,7 +11,7 @@ function HeroPage() {
         // backgroundSize: '100% 20%',
         backgroundRepeat: 'no-repeat',
         pt: { xs: 14, sm: 20 },
-        pb: { xs: 8, sm: 12 },
+        pb: { xs: 8, sm: 1 },
         backgroundImage: 'linear-gradient(to bottom, rgba(52, 152, 219, 0.4), #ffffff)',
 
       })}

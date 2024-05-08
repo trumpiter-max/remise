@@ -1,11 +1,6 @@
 import React from 'react'
 import logo from '../../resources/images/logo_remise.png'
-import './FooterComponent.css'
-import FacebookIcon from '@mui/icons-material/Facebook';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import { Box, Button, Container, IconButton, Link, Stack, TextField, Typography } from '@mui/material';
-import TwitterIcon from '@mui/icons-material/X';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Box, Button, Container, Link, Stack,  Typography } from '@mui/material';
 
 const logoStyle = {
     width: '70px',
