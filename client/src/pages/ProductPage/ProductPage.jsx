@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductFlashSale from '../../components/HomePage/ProductFlashSale'
 import './ProductPage.css'
-import { Button, Pagination, Typography } from '@mui/material'
+import { Button, Divider, Pagination, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack';
 import { red } from '@mui/material/colors'
 import Rating from '@mui/material/Rating';
@@ -13,7 +13,7 @@ import tivi from '../../resources/images/HomePage/tivi.jpg';
 
 function ProductPage() {
   return (
-    <div style={{background:'#f7f7f7'}}>
+    <div>
       <div id='product'>
         <div className='product-introduction'>
         <Stack className='product-card' spacing={2} >
@@ -49,6 +49,7 @@ function ProductPage() {
         <ProductFlashSale/>
       </div>
     </div>
+    <Divider/>
     </div>
   )
 }

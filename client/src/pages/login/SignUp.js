@@ -7,6 +7,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { register } from '../../api/userapi';
 import RegisterForm from '../../components/User/SignUpForm';
+import { useState } from 'react';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
 
 function Copyright(props) {
   return (
@@ -26,38 +29,52 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 
-const handleSignupSubmit=async(value)=>{
-  console.log('Form submitt: ', JSON.stringify(value));
-  register(JSON.stringify(value));
-  try {
-    // const response = await axiosClient.post('api/signup', value);
-    const response = await register(JSON.stringify(value));
-    console.log('Registration successful: ', response);
-  }
-  catch(error){
-    console.log('Error during registration: ', error);
-  }
-  // khi submit gọi hàm này
-};
-
-// const handleSignupSubmit=(data)=>{
-//   console.log('ok');
-//   console.log('Form submit from SignUp: ', data);
-//   // console.log('Form submit: ', data);
-//   //hàm test form
+// const handleSignupSubmit=async(value)=>{
+//   const { username, email, password } = value;
+  // const signUpData={
+  //   email,
+  //   username,
+  //   password
+  // }
+//   console.log('Form submitt: ', JSON.stringify(signUpData));
+//   register(JSON.stringify(signUpData));
+//   try {
+//     // const response = await axiosClient.post('api/signup', value);
+//     const response = await register(JSON.stringify(signUpData));
+//     console.log('Registration successful: ', response);
+//   }
+//   catch(error){
+//     console.log('Error during registration: ', error);
+//   }
+//   // khi submit gọi hàm này
 // };
 export default function SignUp() {
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
-
-  
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [registerSuccess, setRegisterSuccess] = useState('');
+  const handleSignupSubmit=async(value)=>{
+    const { username, email, password } = value;
+    const signUpData={
+      email,
+      username,
+      password
+    }
+    console.log('Form submitt: ', JSON.stringify(signUpData));
+    register(JSON.stringify(signUpData));
+    try {
+      // const response = await axiosClient.post('api/signup', value);
+      const response = await register(JSON.stringify(signUpData));
+      console.log('Registration successful: ', response);
+      setRegisterSuccess('Here is a gentle confirmation that your action was successful.');
+      setIsRegistered(true);
+    }
+    catch(error){
+      console.log('Error during registration: ', error);
+      setRegisterSuccess('Registration failed. Please try again.');
+      setIsRegistered(false);
+    }
+  }
   return (
+    
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -74,6 +91,11 @@ export default function SignUp() {
         </Typography>
         <RegisterForm onSubmit={handleSignupSubmit}/>
         {/* <Register onSubmit={console.log('OK')}/> */}
+          {isRegistered && (
+            <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+            {registerSuccess}
+            </Alert>
+          )}
         </Box>
         <Copyright sx={{ mt: 5 }}/>
       </Container>
