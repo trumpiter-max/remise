@@ -31,6 +31,8 @@ class Product(models.Model):
     thumbnail = models.CharField(max_length=500)
     description = models.TextField()
     url = models.CharField(max_length=200)
+    brand = models.CharField(max_length=200)
+    quantity_sold = models.CharField(max_length=200)
     timestamp =  models.CharField(max_length=200)
     #updated_at = models.DateTimeField(auto_now=True)   
     #deleted = models.IntegerField()
