@@ -7,24 +7,29 @@ services:
       - 3000:3000
     container_name: frontend
     environment:
-      - PORT=3000
       - NODE_ENV=development
     restart: always
     volumes:
       - ./client:/var/www/client
       - client-data:/var/www/client/build
+    networks:
+      - remise-network
 
   webserver:
     container_name: webserver
-    restart: unless-stopped
+    restart: always
     build: ./nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - client-data:/usr/share/nginx/html
+      - ./nginx/logs:/var/log/nginx/
     depends_on:
       - frontend
+      - backend
+    networks:
+      - remise-network
 
   cache:
     restart: always
@@ -55,20 +60,6 @@ services:
     networks:
       - remise-network
 
-  pgadmin4:
-      image: dpage/pgadmin4
-      container_name: pgadmin4
-      depends_on:
-        - database
-      ports:
-        - "5051:5051"
-      environment:
-        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
-        PGADMIN_DEFAULT_PASSWORD: root
-      restart: always
-      networks:
-        - remise-network
-
   backend:
     container_name: backend
     restart: always
@@ -88,7 +79,6 @@ services:
     depends_on:
       - database
       - cache
-      - pgadmin4
     networks:
       - remise-network
     volumes:
