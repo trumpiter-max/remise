@@ -8,6 +8,11 @@ from rest_framework.decorators import action
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+# For caching
+from django.core.cache import cache
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+
 from .models import (
     Role,
     User,
@@ -27,12 +32,25 @@ from .serializers import (
     ReviewSerializer,
 )
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
+def retrieve_data(key):
+    if key in cache:
+        data = cache.get(key)
+        return data
+    return False
+
 @csrf_exempt
 def role_list(request):
     if request.method == 'GET':
-        roles = Role.objects.all()
-        serializer = RoleSerializer(roles, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        data = retrieve_data('role_list')
+        if data == False:
+            roles = Role.objects.all()
+            serializer = RoleSerializer(roles, many=True)
+            cache.set('role_list', serializer.data, timeout=CACHE_TTL)
+            return JsonResponse(serializer.data, safe=False)
+        else:
+            return JsonResponse(data, safe=False)
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
@@ -50,8 +68,13 @@ def role_detail(request, pk):
         return JsonResponse({'error': 'Role does not exist'}, status=404)
 
     if request.method == 'GET':
-        serializer = RoleSerializer(role)
-        return JsonResponse(serializer.data)
+        data = retrieve_data('role_detail')
+        if data == False:
+            serializer = RoleSerializer(role)
+            cache.set('role_detail', serializer.data, timeout=CACHE_TTL)
+            return JsonResponse(serializer.data)
+        else:
+            return JsonResponse(data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
@@ -80,8 +103,12 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    data = retrieve_data('product')
+    if data == False:
+        queryset = Product.objects.all()
+        serializer_class = ProductSerializer
+    else:
+        serializer_class = data
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 

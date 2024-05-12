@@ -3,12 +3,16 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+    cpus: 4
+    mem_limit: 5120m
     ports:
       - 3000:3000
     container_name: frontend
     environment:
       - NODE_ENV=development
     restart: always
+    depends_on:
+      - redis
     volumes:
       - ./client:/var/www/client
       - client-data:/var/www/client/build
@@ -31,10 +35,11 @@ services:
     networks:
       - remise-network
 
-  cache:
+  redis:
     restart: always
-    container_name: cache
+    container_name: redis
     image: redis:latest
+    command: redis-server --save 60 1 --loglevel warning
     ports:
       - "6379:6379"
     volumes:
@@ -46,6 +51,8 @@ services:
     image: postgres:16.2-alpine3.19
     restart: always
     container_name: database
+    cpus: 4
+    mem_limit: 5120m
     ports:
       - 5432:5432
     environment:
@@ -66,9 +73,12 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    cpus: 4
+    mem_limit: 5120m
     ports:
       - 8000:8000
     environment:
+      - PYTHONUNBUFFERED=1
       - POSTGRES_USER=remise
       - POSTGRES_PASSWORD=remise
       - POSTGRES_DB=remisedb
@@ -78,11 +88,12 @@ services:
       - SECRET_KEY=django-insecure-&%b)m95ts^a-maxymf__2r0#=ykq#rn%__j#%k7=a8dptj7-m_
     depends_on:
       - database
-      - cache
+      - redis
     networks:
       - remise-network
     volumes:
       - ./server:/var/www/server
+      - ./server/cache:/var/www/server/cache
 
 volumes:
   client-data:
