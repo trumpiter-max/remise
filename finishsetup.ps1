@@ -1,6 +1,6 @@
 # Define the container and the Python command
-containerName="backend"
-command="cd /var/www/server/ && \
+$containerName="backend"
+$command="cd /var/www/server/ && \
     python manage.py makemigrations && \
     python manage.py migrate && \
     python manage.py collectstatic --noinput && \

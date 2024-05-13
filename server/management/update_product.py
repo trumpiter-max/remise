@@ -49,8 +49,8 @@ for csv_file in csv_files:
         reader = csv.reader(f)
         next(reader)  # Skip the header row
         for row in reader:
-            id, title, price, discount, thumbnail, description, category_id, url, discount_rate, timestamp = row
+            id, title, price, discount, thumbnail, description, category_id, url, discount_rate, brand, quantity_sold, timestamp = row
             try:
-                Product.objects.create(id=id, title=title, price=price, discount=discount, thumbnail=thumbnail, description=description, category_id=category_id, url=url, discount_rate=discount_rate, timestamp=timestamp)
+                Product.objects.create(id=id, title=title, price=price, discount=discount, thumbnail=thumbnail, description=description, category_id=category_id, url=url, discount_rate=discount_rate, brand=brand, quantity_sold=quantity_sold, timestamp=timestamp)
             except IntegrityError:
                 pass  # Do nothing if the product already exists

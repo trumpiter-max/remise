@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:20
 WORKDIR /var/www/client
 COPY . /var/www/client/
 RUN chown -Rh node:node /var/www/client

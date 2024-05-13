@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
-import { AppBar, Button, Container, Divider, Grid, IconButton, MenuItem, Paper, Toolbar, Typography, useTheme } from '@mui/material';
+import { AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
 import logo from '../../resources/images/logo_remise.png';
 import HeroPage from './HeroPage';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const logoStyle={
   width: '50px',
@@ -13,52 +14,60 @@ const logoStyle={
   cursor: 'pointer',
 };
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
+// const Search = styled('div')(({ theme }) => ({
+//   position: 'relative',
+//   borderRadius: theme.shape.borderRadius,
+//   backgroundColor: alpha(theme.palette.common.white, 0.15),
+//   '&:hover': {
+//     backgroundColor: alpha(theme.palette.common.white, 0.25),
+//   },
+//   marginRight: theme.spacing(2),
+//   marginLeft: 0,
+//   width: '100%',
+//   [theme.breakpoints.up('sm')]: {
+//     marginLeft: theme.spacing(3),
+//     width: 'auto',
+//   },
+// }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  borderRadius: '1000px', // Lưu ý chữ "R" viết hoa
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+// const SearchIconWrapper = styled('div')(({ theme }) => ({
+//   borderRadius: '1000px', // Lưu ý chữ "R" viết hoa
+//   padding: theme.spacing(0, 2),
+//   height: '100%',
+//   position: 'absolute',
+//   pointerEvents: 'none',
+//   display: 'flex',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+// }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+// const StyledInputBase = styled(InputBase)(({ theme }) => ({
+//   color: 'inherit',
+//   '& .MuiInputBase-input': {
+//     padding: theme.spacing(1, 1, 1, 0),
+//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+//     transition: theme.transitions.create('width'),
+//     width: '100%',
+//     [theme.breakpoints.up('md')]: {
+//       width: '20ch',
+//     },
+//   },
+// }));
 
-function handleClickLogo(){
-  return window.location.reload();
-}
+
 
 function HeaderComponent() {
-  const [auth, setAuth]= useState(true);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  const [currentUser, setCurrentUser] = useState(false);
+  useEffect(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setCurrentUser(user); // Đặt trạng thái từ localStorage
+    }
+  }, []);
+  // const [auth, setAuth]= useState(false);
   const scrollToSection = (sectionId) => {
     const sectionElement = document.getElementById(sectionId);
     const offset = 128;
@@ -73,6 +82,17 @@ function HeaderComponent() {
     }
   };
 
+  const navigate = useNavigate(); // Tạo hàm điều hướng
+
+  const handleIconClick = () => {
+    // Kiểm tra nếu currentUser tồn tại, chuyển hướng đến trang mong muốn
+    if (currentUser) {
+      navigate('/profile'); // Chuyển hướng đến trang Profile
+    }
+  };
+  const handleClickLogo=()=>{
+    navigate('..');
+  }
   return (
       <div>
         <AppBar
@@ -120,6 +140,7 @@ function HeaderComponent() {
                   style={logoStyle}
                   alt="logo of sitemark"
                 />
+                {isHome&&
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                   <MenuItem
                     onClick={() => scrollToSection('flash-sale')}
@@ -130,7 +151,7 @@ function HeaderComponent() {
                     </Typography>
                   </MenuItem>
                   <MenuItem
-                    onClick={() => scrollToSection('highlights')}
+                    onClick={() => scrollToSection('best-sale')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
@@ -138,7 +159,7 @@ function HeaderComponent() {
                     </Typography>
                   </MenuItem>
                   <MenuItem
-                    onClick={() => scrollToSection('pricing')}
+                    onClick={() => scrollToSection('deal')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
@@ -156,7 +177,7 @@ function HeaderComponent() {
                       <SearchIcon />
                     </IconButton>
                   </Paper>
-                </Box>
+                </Box>}
               </Box>
               <Box
               sx={{
@@ -166,7 +187,7 @@ function HeaderComponent() {
               }}
             >
                 {/* <ToggleColorMode/> */}
-              {auth&&
+              {!currentUser&&
                 <div>
                   <Button
                   color="primary"
@@ -200,6 +221,7 @@ function HeaderComponent() {
                 </Button>
                 </div>
               }
+              {currentUser&&<AccountCircleIcon style={{cursor:'pointer'}} onClick={handleIconClick} color='primary'/>}
             </Box>
             </Toolbar>
           </Container>

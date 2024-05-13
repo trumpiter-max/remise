@@ -50,11 +50,19 @@ def parser_product(json):
     
     d['url'] = json.get('short_url')
     d['discount_rate'] = json.get('discount_rate')
+    try:
+        d['brand'] = json.get('brand').get('name')
+    except AttributeError:
+        d['brand'] = 'Không'
+    try:
+        d['quantity_sold'] = json.get('quantity_sold').get('value')
+    except AttributeError:
+        d['quantity_sold'] = 0
     d['timestamp'] = current_datetime 
-     
+    
     return d
 
-df_id = pd.read_csv('product_id_sport.csv')
+df_id = pd.read_csv('product_id_shoes-sandal-men.csv')
 p_ids = df_id.id.to_list()
 print(p_ids)
 result = []
@@ -78,4 +86,4 @@ for pid in tqdm(p_ids, total=len(p_ids)):
     time.sleep(1)
 
 df_product = pd.DataFrame(result)
-df_product.to_csv('crawled_data_sport.csv', index=False)
+df_product.to_csv('crawled_data_shoes-sandal-men.csv', index=False)

@@ -10,15 +10,26 @@ function ProductItem({ productItem }) {
             component="img"
             height="140"
             width="100"
-            src={productItem.thumbnailUrl}
-            alt={productItem.name}
+            src={productItem.thumbnail}
+            alt={productItem.title}
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="div">
-              {productItem.name}
+            <Typography gutterBottom variant="h6" component="div"
+            display={'-webkit-box'}
+            sx={{display:'-webkit-box', WebkitBoxOrient: 'vertical', // Đặt hướng là dọc
+            WebkitLineClamp: 2, // Giới hạn số dòng
+            overflow: 'hidden', // Cắt bớt nội dung tràn
+            textOverflow: 'ellipsis',
+            minHeight:'3em'}}
+            overflow={'hidden'}
+            >
+              {productItem.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {productItem.price} VND
+            </Typography>
+            <Typography variant="body2" color="text.secondary" >
+              {productItem.discount_rate} VND
             </Typography>
           </CardContent>
         </CardActionArea>

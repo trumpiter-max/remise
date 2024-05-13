@@ -1,13 +1,11 @@
 import React from 'react'
 import './ProfilePage.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-import ModeEditRoundedIcon from '@mui/icons-material/ModeEditRounded';
-import ProductFlashSale from '../../../components/HomePage/ProductFlashSale'
-import { Badge, Grid, Link, Stack, Typography } from '@mui/material';
+import { Badge, Typography } from '@mui/material';
 import tiviImage from '../../../resources/images/HomePage/tivi.jpg'
 import NoticeList from '../../../components/User/ProfilePage/NoticeItem/NoticeList';
+import { Link } from '@mui/material';
 
 
 function NoticePage() {

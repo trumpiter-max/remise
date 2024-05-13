@@ -10,3 +10,5 @@ psycopg2-binary
 psycopg-binary
 requests
 g4f[all]
+redis
+django-redis

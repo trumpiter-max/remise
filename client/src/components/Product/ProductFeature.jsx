@@ -3,20 +3,22 @@ import ProductList from './ProductList'
 import tivi from '../../resources/images/HomePage/tivi.jpg'
 import { getFlashSaleProduct } from '../../api/product';
 
-const tiviImage=tivi;
 
 
-function ProductFeature(typeProduct) {
+function ProductFeature({typeProduct}) {
 
+  typeProduct=1;
   let [products, setProducts] = useState([]); // Giá trị mặc định là mảng rỗng
   const [error, setError] = useState(null); // Để lưu lỗi nếu có
   useEffect(() => {
     const fetchData = async () => {
       try {
+        let data;
         switch (typeProduct)
         {
           case 1: 
-            var data = await getFlashSaleProduct(); // Gọi hàm và chờ phản hồi
+            data = await getFlashSaleProduct(); // Gọi hàm và chờ phản hồi
+            break;
         }
         setProducts(data); // Lưu dữ liệu vào state
       } catch (err) {
@@ -27,64 +29,15 @@ function ProductFeature(typeProduct) {
     fetchData(); // Gọi hàm để lấy dữ liệu
   }, []); 
 
-  typeProduct=1;
-  const productList=[
-    {
-        id:1,
-        name: 'TiviSony',
-        thumbnailUrl: tiviImage,
-        price: 10
-    },
-    {
-        id:2,
-        name: 'TiviSony2',
-        thumbnailUrl: tiviImage,
-        price: 10
-    },
-    {
-        id:3,
-        name: 'TiviSony3',
-        thumbnailUrl: tiviImage,
-        price: 10
-    },
-    {
-        id:4,
-        name: 'TiviSony4',
-        thumbnailUrl: tiviImage,
-        price: 10
-    },
-    {
-      id:4,
-      name: 'TiviSony4',
-      thumbnailUrl: tiviImage,
-      price: 10},
-      {
-        id:4,
-        name: 'TiviSony4',
-        thumbnailUrl: tiviImage,
-        price: 10
-      },
-    {
-        id:4,
-        name: 'TiviSony4',
-        thumbnailUrl: tiviImage,
-        price: 10
-    },
-  ]
-
-  // if (products!=null)//?
-  // {
-  //   products=productList;
-  // }
 
   if (error){
-    return <div>
+    return (<div>
       Error in display product:{error.message.msgBody}
-    </div>
+    </div>)
   }
   return (
     <div>
-        <ProductList productList={productList} type={typeProduct}/>
+        <ProductList productList={products} type={typeProduct}/>
     </div>
   )
 }
