@@ -10,3 +10,14 @@ export const getFlashSaleProduct=async()=>{
         throw err; // Ném lỗi để phần gọi biết
     }
 }
+
+export const getDetailProduct=async(id)=>{
+    try {
+        // const response = await axiosClient.post("/signup", user);
+        const response = await axiosClient.get(`/management/products/${id}`);
+        return response.data;
+    } catch (err) {
+        console.log()('Error fetching detail product:', err);
+        throw err; // Ném lỗi để phần gọi biết
+    }
+}

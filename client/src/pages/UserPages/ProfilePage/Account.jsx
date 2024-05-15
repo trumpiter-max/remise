@@ -7,22 +7,23 @@ import { Badge, Stack, Typography } from '@mui/material';
 import { Link } from '@mui/material';
 
 function Account() {
+  const username=localStorage.getItem('username');
   return (
     <div className='profile'>
       <div className='left-side-bar'>
         <div className='username left-side-bar-item'>
             <AccountCircleIcon color='primary'/>
-            <Link href='/profile' ml={1} sx={{textDecoration:'none', color:'black', ml:1}}>Username</Link>
+            <Typography ml={1} sx={{textDecoration:'none', color:'black', ml:1}}>{username||'Username'}</Typography>
           </div>
           <div className='account left-side-bar-item'>
             <AccountCircleIcon color='primary'/>
             <Typography sx={{textDecoration:'none', color:'red', ml:1}}>Account</Typography>
           </div>
           <div className='notice left-side-bar-item'>
-          <Badge badgeContent={4} color="secondary">
+          <Badge badgeContent={5} color="secondary">
               <CircleNotificationsIcon color='primary' />
             </Badge>
-            <Link href='/notice' sx={{textDecoration:'none', color:'black', ml:1}} ml={1}>Notice</Link>
+            <Link href='/profile' sx={{textDecoration:'none', color:'black', ml:1}} ml={1}>Notice</Link>
           </div>
         </div>
         <div className='profile-body'>

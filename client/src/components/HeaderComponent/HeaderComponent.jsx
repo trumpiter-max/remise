@@ -13,50 +13,9 @@ const logoStyle={
   height: 'auto',
   cursor: 'pointer',
 };
-
-// const Search = styled('div')(({ theme }) => ({
-//   position: 'relative',
-//   borderRadius: theme.shape.borderRadius,
-//   backgroundColor: alpha(theme.palette.common.white, 0.15),
-//   '&:hover': {
-//     backgroundColor: alpha(theme.palette.common.white, 0.25),
-//   },
-//   marginRight: theme.spacing(2),
-//   marginLeft: 0,
-//   width: '100%',
-//   [theme.breakpoints.up('sm')]: {
-//     marginLeft: theme.spacing(3),
-//     width: 'auto',
-//   },
-// }));
-
-// const SearchIconWrapper = styled('div')(({ theme }) => ({
-//   borderRadius: '1000px', // Lưu ý chữ "R" viết hoa
-//   padding: theme.spacing(0, 2),
-//   height: '100%',
-//   position: 'absolute',
-//   pointerEvents: 'none',
-//   display: 'flex',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-// }));
-
-// const StyledInputBase = styled(InputBase)(({ theme }) => ({
-//   color: 'inherit',
-//   '& .MuiInputBase-input': {
-//     padding: theme.spacing(1, 1, 1, 0),
-//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-//     transition: theme.transitions.create('width'),
-//     width: '100%',
-//     [theme.breakpoints.up('md')]: {
-//       width: '20ch',
-//     },
-//   },
-// }));
-
-
-
-function HeaderComponent() {
+function HeaderComponent({results}) {
+  const [searchTerm, setSearchTerm] = useState('');
+  results=searchTerm;
   const location = useLocation();
   const isHome = location.pathname === '/';
   const [currentUser, setCurrentUser] = useState(false);
@@ -67,6 +26,10 @@ function HeaderComponent() {
       setCurrentUser(user); // Đặt trạng thái từ localStorage
     }
   }, []);
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+    setSearchTerm(searchTerm);
+  };
   // const [auth, setAuth]= useState(false);
   const scrollToSection = (sectionId) => {
     const sectionElement = document.getElementById(sectionId);
@@ -82,12 +45,14 @@ function HeaderComponent() {
     }
   };
 
+  
+
   const navigate = useNavigate(); // Tạo hàm điều hướng
 
   const handleIconClick = () => {
     // Kiểm tra nếu currentUser tồn tại, chuyển hướng đến trang mong muốn
     if (currentUser) {
-      navigate('/profile'); // Chuyển hướng đến trang Profile
+      navigate('/account'); // Chuyển hướng đến trang Profile
     }
   };
   const handleClickLogo=()=>{
@@ -142,41 +107,32 @@ function HeaderComponent() {
                 />
                 {isHome&&
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                  <MenuItem
+                  {/* <MenuItem
                     onClick={() => scrollToSection('flash-sale')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary" >
                       Flash Sale
                     </Typography>
-                  </MenuItem>
-                  <MenuItem
+                  </MenuItem> */}
+                  {/* <MenuItem
                     onClick={() => scrollToSection('best-sale')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
-                      Best Selling Products
+                      Sản phẩm bán chạy nhất
                     </Typography>
-                  </MenuItem>
+                  </MenuItem> */}
                   <MenuItem
                     onClick={() => scrollToSection('deal')}
                     sx={{ py: '6px', px: '22px' }}
                   >
                     <Typography variant="body2" color="text.primary">
-                      Deals of the Day
+                      Gợi ý cho bạn
                     </Typography>
                   </MenuItem>
                   <Grid flexGrow={2}></Grid>
-                  <Paper component="form"
-                    sx={{ p: '1px 4px', display: 'flex', alignItems: 'center', width: 400 }}>
-                    {/* <Grid flexGrow={2}></Grid> */}
-                    <InputBase
-                      sx={{ ml: 1, flex: 1 }}
-                      placeholder="Tìm kiếm sản phẩm"/>
-                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                      <SearchIcon />
-                    </IconButton>
-                  </Paper>
+                  
                 </Box>}
               </Box>
               <Box

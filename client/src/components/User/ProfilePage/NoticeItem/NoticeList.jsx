@@ -1,12 +1,16 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import NoticeItem from './NoticeItem'
+import { useDispatch, useSelector } from 'react-redux';
 
 
-function NoticeList({noticeList}) {
+function NoticeList() {
+  const notifications = useSelector((state) => state.notifications);
+  console.log("DS: ",notifications);
+  if(!notifications) return(<div></div>)
   return (
     <Grid container spacing={1}>
-        {noticeList.map((noticeItem) => (
+        {notifications.map((noticeItem) => (
           <Grid item xs={12}>
             <NoticeItem noticeItem={noticeItem} />
           </Grid>
