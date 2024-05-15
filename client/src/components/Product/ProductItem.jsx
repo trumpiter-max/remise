@@ -1,8 +1,13 @@
 import React from 'react'
 import { Card } from '@mui/material'
 import { CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-
+import {useNavigate} from 'react-router-dom'
 function ProductItem({ productItem }) {
+  const id=productItem.id;
+  const navigate = useNavigate();
+  const handleClick=()=>{
+    navigate(`/product/${id}`);
+  };
   return (
     <Card>
         <CardActionArea>
@@ -12,6 +17,7 @@ function ProductItem({ productItem }) {
             width="100"
             src={productItem.thumbnail}
             alt={productItem.title}
+            onClick={handleClick}
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div"
@@ -26,10 +32,10 @@ function ProductItem({ productItem }) {
               {productItem.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {productItem.price} VND
+              {productItem.discount} VND
             </Typography>
-            <Typography variant="body2" color="text.secondary" >
-              {productItem.discount_rate} VND
+            <Typography variant="body2" color="red" >
+              Giảm: {productItem.discount_rate}%
             </Typography>
           </CardContent>
         </CardActionArea>

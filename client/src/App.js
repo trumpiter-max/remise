@@ -11,15 +11,16 @@ import { routes } from './routes';
 import DefaultComponent from './components/DefaultComponent/DefaultComponent';
 import { Fragment } from 'react';
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 function App() {
   useEffect(() => {
     document.title = "Remise"
   }, []);
   return (
-    
-    
-    <div className="App">
+    <Provider store={store}>
+      <div className="App">
       <Router>
         <Routes>
         { routes.map((route) =>{
@@ -36,6 +37,7 @@ function App() {
         </Routes>
       </Router>
     </div>
+    </Provider>
   );
       }
 

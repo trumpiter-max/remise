@@ -29,7 +29,7 @@ function NoticePage() {
       </div>
       <div className='profile-body'>
         <SearchInput></SearchInput>
-        <NoticeList noticeList={noticeList}/>
+        <NoticeList/>
       </div>
     </div>
   )
