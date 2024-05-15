@@ -47,11 +47,11 @@ function ProductPage() {
   return (
     <Grid>
       <Grid id='product'>
-        <Grid className='product-introduction'>
-        <Stack className='product-card' spacing={2} >
-          <img height={200} src={product.thumbnail} alt='tivi'></img>
+        <Grid container className='product-introduction'>
+        <Stack className='product-card' spacing={2} xs={12} md={6}>
+          <img heighth={200} src={product.thumbnail} alt='tivi' style={{maxHeight:'200px'}}></img>
         </Stack>
-        <Grid className='product-react' style={{position:'relative', minWidth:200, paddingRight:20, textAlign:'left'}}>
+        <Grid className='product-react'  style={{position:'relative', minWidth:200, paddingRight:20, textAlign:'left'}}>
           <Typography sx={{color:red[700], fontWeight:700, maxWidth:500}}>{product.title}</Typography>
           <Grid sx={{display:'flex', flexDirection: 'row', position:'absolute', top:0, right:0}}>
             <Button onClick={handleFavoriteIcon()}>
@@ -59,18 +59,18 @@ function ProductPage() {
             </Button>
           </Grid>
           <Grid>
-            <Typography variant='h5' sx={{maxWidth:500, textAlign:'left', cursor:'pointer', fontWeight:'bold'}}>
+            <Typography variant='h5' sx={{maxWidth:500, textAlign:'left',fontWeight:'bold'}}>
             Chỉ còn: {product.discount} VNĐ
             </Typography>
             <Typography sx={{color:'red'}} variant='h4'>-{product.discount_rate}%</Typography>
           </Grid>
-          <Typography sx={{textDecoration:'line-through',maxWidth:500, textAlign:'left'}}>
+          <Typography sx={{textDecoration:'line-through', textAlign:'left'}}>
             {product.price} VNĐ
           </Typography>
-          <Typography sx={{maxWidth:800, textAlign:'left'}}>
+          <Typography sx={{maxWidth:500, textAlign:'left'}}>
             {product.description}
           </Typography>
-          <Typography sx={{maxWidth:800, textAlign:'left', cursor:'pointer'}}>
+          <Typography sx={{maxWidth:500, textAlign:'left', cursor:'pointer'}}>
             {product.url}
           </Typography>
           

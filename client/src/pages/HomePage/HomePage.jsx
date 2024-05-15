@@ -81,7 +81,7 @@ function Deals() {
     <div>
       <Grid mt={5} id='deal'>
       <Paper component="form"
-                    sx={{ p: '1px 4px', display: 'flex', alignItems: 'center', width: 400 }}>
+                    sx={{ p: '1px 4px', display: 'flex', alignItems: 'center', width: 240 }}>
                     {/* <Grid flexGrow={2}></Grid> */}
                     <InputBase
                       sx={{ ml: 1, flex: 1 }}
@@ -136,7 +136,7 @@ function HomePage() {
   
   return (
     <Grid>
-      <Grid m={20}>
+      <Grid m={10}>
      
         {/* <Category/> */}
         {/* <Grid>
