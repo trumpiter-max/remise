@@ -1,3 +1,4 @@
+wheel
 django
 gunicorn
 djangorestframework 

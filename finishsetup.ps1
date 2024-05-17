@@ -7,7 +7,7 @@ $command="cd /var/www/server/ && \
     python manage.py shell < /var/www/server/management/update_product.py"
 
 # Define the command to create a superuser, uncomment docker run below to create new
-createSuperUser="python manage.py createsuperuser"
+# $createSuperUser="python3 manage.py createsuperuser"
 
 # Use Docker exec to run the command in the container
 docker exec -it $containerName /bin/sh -c "$command"

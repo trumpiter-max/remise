@@ -115,7 +115,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         keyword = self.request.query_params.get('keyword')
         source = self.request.query_params.get('source')
-        discount_rate = self.request.query_params.get('discount_rate', true).lower() == 'true'
+        discount_rate = self.request.query_params.get('discount_rate', 'true').lower() == 'true'
         asc = self.request.query_params.get('asc', 'true').lower() == 'true'
         order = '' if asc else '-'
 

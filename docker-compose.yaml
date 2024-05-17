@@ -15,7 +15,7 @@ services:
       - redis
     volumes:
       - ./client:/var/www/client
-      - client-data:/var/www/client/build
+      - client-data:/var/www/client/build/
     networks:
       - remise-network
 
@@ -27,7 +27,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - client-data:/usr/share/nginx/html
+      - client-data:/usr/share/nginx/html/
       - ./nginx/logs:/var/log/nginx/
     depends_on:
       - frontend
