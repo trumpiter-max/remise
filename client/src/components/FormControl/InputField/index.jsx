@@ -33,7 +33,7 @@ function InputField(props) {
             onBlur={onBlur} // notify when input is touched
             inputRef={ref} // wire up the input ref
             sx={{width:width, mr:marginRight}}
-            {...rest} // Truyền các thuộc tính bổ sung
+            {...rest} // Additional props
             fullWidth
             >{errors[name] && <p>{errors[name].message}</p>}</TextField>
             )}

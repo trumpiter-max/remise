@@ -58,7 +58,7 @@ function FooterComponent() {
             NHÓM 8
           </Typography>
           <Typography variant="body2" color="text.secondary" mb={2}>
-            Đăng ký nhận bản tin của chúng tôi để biết thông tin cập nhật và khuyến mãi hàng tuần.
+            Register the newsletter to get the latest news and promotions
           </Typography>
         </Box>
       </Box>

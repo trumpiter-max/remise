@@ -9,8 +9,8 @@ import { Typography, Box } from '@mui/material';
 
 const categories = ['Electronics', 'Fashion', 'Books', 'Sports'];
 const sortingOptions = ['Price: Low to High', 'Price: High to Low', 'Newest', 'Oldest'];
-const review = ['5 sao', '4 sao', '3 sao', '2 sao', '1 sao'];
-const sales = ['Đang giảm giá', 'Giảm ship' ];
+const review = ['Very Positive', 'Positive', 'Neutral', 'Negative', 'Very Negative'];
+const sales = ['In sale', 'Free ship' ];
 const label = ['Samsung', "Apple", "OnePlus", "Vivo", "Realme"];
 ;
 export default function SearchForm() {
@@ -27,9 +27,8 @@ export default function SearchForm() {
           alignItems: "center"
         }}
       >
-        <h2>Tìm kiếm nâng cao</h2>
         <Box sx={{ textAlign: 'left', width: '100%', marginBottom: '8px' , marginLeft: '100px'}}>
-          <Typography variant="body1">Từ khóa</Typography>
+          <Typography variant="body1">Keyword</Typography>
         </Box>
         <TextField style={{ width: 400 }} />
         <br></br>
@@ -38,7 +37,7 @@ export default function SearchForm() {
           <Grid container spacing={2} alignItems="left">
             <Grid item xs={6}>
               <Box sx={{ textAlign: 'left', width: '100%', marginBottom: '8px' , marginLeft: '0px'}}>
-                <Typography variant="body1">Danh mục</Typography>
+                <Typography variant="body1">Category</Typography>
               </Box>
               <Autocomplete
                 options={categories}
@@ -47,7 +46,7 @@ export default function SearchForm() {
             </Grid>
             <Grid item xs={6}>
             <Box sx={{ textAlign: 'left', width: '100%', marginBottom: '8px' , marginLeft: '0px'}}>
-                <Typography variant="body1">Nhãn hàng</Typography>
+                <Typography variant="body1">Brand</Typography>
               </Box>
               <Autocomplete
                 options={label}
@@ -60,7 +59,7 @@ export default function SearchForm() {
 
         <br></br>
         <Box sx={{ textAlign: 'left', width: '100%', marginBottom: '8px' , marginLeft: '100px'}}>
-          <Typography variant="body1">Sắp xếp</Typography>
+          <Typography variant="body1">Sort</Typography>
         </Box>
         <Autocomplete
           options={sortingOptions}
@@ -74,13 +73,13 @@ export default function SearchForm() {
             <Grid item xs={6}>
               <Autocomplete
                 options={review}
-                renderInput={(params) => <TextField {...params} label="Đánh giá"/>}
+                renderInput={(params) => <TextField {...params} label="Rating"/>}
               />
             </Grid>
             <Grid item xs={6}>
               <Autocomplete
                 options={sales}
-                renderInput={(params) => <TextField {...params} label = "Khuyến mãi"/>}
+                renderInput={(params) => <TextField {...params} label = "Promotion"/>}
               />
             </Grid>
           </Grid>
@@ -89,7 +88,7 @@ export default function SearchForm() {
         
         <br></br>
         <Button variant="contained" color="primary">
-          Tìm kiếm
+          Search
         </Button>
       </Paper>
     </div>

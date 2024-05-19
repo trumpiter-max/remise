@@ -7,7 +7,7 @@ export const getFlashSaleProduct=async()=>{
         return response.data;
     } catch (err) {
         console.log()('Error fetching flash sale products:', err);
-        throw err; // Ném lỗi để phần gọi biết
+        throw err; 
     }
 }
 
@@ -18,6 +18,6 @@ export const getDetailProduct=async(id)=>{
         return response.data;
     } catch (err) {
         console.log()('Error fetching detail product:', err);
-        throw err; // Ném lỗi để phần gọi biết
+        throw err; 
     }
 }

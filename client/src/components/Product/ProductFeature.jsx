@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import ProductList from './ProductList'
-import tivi from '../../resources/images/HomePage/tivi.jpg'
 import { getFlashSaleProduct } from '../../api/product';
 
 
@@ -8,8 +7,8 @@ import { getFlashSaleProduct } from '../../api/product';
 function ProductFeature({typeProduct}) {
 
   typeProduct=1;
-  let [products, setProducts] = useState([]); // Giá trị mặc định là mảng rỗng
-  const [error, setError] = useState(null); // Để lưu lỗi nếu có
+  let [products, setProducts] = useState([]); 
+  const [error, setError] = useState(null); 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,16 +16,16 @@ function ProductFeature({typeProduct}) {
         switch (typeProduct)
         {
           case 1: 
-            data = await getFlashSaleProduct(); // Gọi hàm và chờ phản hồi
+            data = await getFlashSaleProduct();
             break;
         }
-        setProducts(data); // Lưu dữ liệu vào state
+        setProducts(data); 
       } catch (err) {
-        setError(err); // Lưu lỗi nếu có
+        setError(err); 
       }
     };
 
-    fetchData(); // Gọi hàm để lấy dữ liệu
+    fetchData();
   }, []); 
 
 

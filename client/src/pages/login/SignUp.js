@@ -46,7 +46,6 @@ const defaultTheme = createTheme();
 //   catch(error){
 //     console.log('Error during registration: ', error);
 //   }
-//   // khi submit gọi hàm này
 // };
 export default function SignUp() {
   const [isRegistered, setIsRegistered] = useState(false);

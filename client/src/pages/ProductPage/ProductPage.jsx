@@ -60,7 +60,7 @@ function ProductPage() {
           </Grid>
           <Grid>
             <Typography variant='h5' sx={{maxWidth:500, textAlign:'left',fontWeight:'bold'}}>
-            Chỉ còn: {product.discount} VNĐ
+            New price: {product.discount} VNĐ
             </Typography>
             <Typography sx={{color:'red'}} variant='h4'>-{product.discount_rate}%</Typography>
           </Grid>
@@ -70,15 +70,15 @@ function ProductPage() {
           <Typography sx={{maxWidth:500, textAlign:'left'}}>
             {product.description}
           </Typography>
-          <Typography sx={{maxWidth:500, textAlign:'left', cursor:'pointer'}}>
-            {product.url}
-          </Typography>
+          <Button sx={{maxWidth:500, textAlign:'left'}} href={product.url}>
+            Buy Now
+          </Button>
           
         </Grid>
       </Grid>
       {/* <TablePaginationDemo/> */}
       <div className='product-similar' >
-        {/* <h5>Các sản phẩm tương tự</h5> */}
+        {/* <h5>Relative products</h5> */}
         {/* <ProductFlashSale/> */}
       </div>
     </Grid>

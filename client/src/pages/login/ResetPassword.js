@@ -13,16 +13,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
     return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+            {'Copyright © '}
         <Link color="inherit" href="#">
-          Remise
+            Remise
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
-      </Typography>
+        </Typography>
     );
-  }
+}
 
 const defaultTheme = createTheme();
 

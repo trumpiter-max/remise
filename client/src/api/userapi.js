@@ -8,7 +8,7 @@ export const register =async (user)=>{
     } catch (err) {
         return {
             message: {
-                msgBody: "Tao tai khoan khong thanh cong",
+                msgBody: "Register failed, please try again",
                 msgError: true,
             },
             err,

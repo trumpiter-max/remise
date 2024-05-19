@@ -2,12 +2,12 @@ import { Button, FormControl, Grid, MenuItem, Select, useTheme } from '@mui/mate
 import React from 'react'
 
 const names = [
-    'Thời trang',
-    'Điện tử',
-    'Quần áo',
-    'Giày dép',
-    'Sách',
-    'Nội thất',
+    'Fashion',
+    'Electronics',
+    'Clothes',
+    'Shoes/Sandals',
+    'Books',
+    'Furniture',
   ];
 
 // category
@@ -70,7 +70,7 @@ function Category() {
           >
             <MenuItem disabled value="">
               <Button onClick={handleOpen} sx={{padding:0, marginLeft:0}}>
-                Danh mục sản phẩm
+                Product Category
               </Button>
             </MenuItem>
             {names.map((name) => (

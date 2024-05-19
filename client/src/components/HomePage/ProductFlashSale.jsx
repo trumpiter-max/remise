@@ -4,13 +4,12 @@ import sampleImage from '../../resources/images/HomePage/tivi.jpg'
 import { CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 const image1= sampleImage;
 const products = [
-    { name: 'Sản phẩm 1', image: image1, price: '100.000' },
-    { name: 'Sản phẩm 2', image: image1, price: '200.000' },
-    { name: 'Sản phẩm 3', image: image1, price: '300.000' },
-    { name: 'Sản phẩm 4', image: image1, price: '360.000' },
-    { name: 'Sản phẩm 3', image: image1, price: '300.000' },
-    { name: 'Sản phẩm 4', image: image1, price: '360.000' },
-    // Thêm sản phẩm khác nếu cần
+    { name: 'Product 1', image: image1, price: '100.000' },
+    { name: 'Product 2', image: image1, price: '200.000' },
+    { name: 'Product 3', image: image1, price: '300.000' },
+    { name: 'Product 4', image: image1, price: '360.000' },
+    { name: 'Product 3', image: image1, price: '300.000' },
+    { name: 'Product 4', image: image1, price: '360.000' },
   ];
 // Component Card
 const ProductCard = ({ product }) => {
