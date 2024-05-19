@@ -27,7 +27,7 @@ export default function AccountDetail(){
                                     paddingRight: 60, 
                                     paddingLeft: 90,
                                     textAlign: "right"}}>
-                            <label>Tên đăng nhập</label>
+                            <label>Username</label>
                         </td>
 
                         <td className="usernameInput"style={{paddingTop: 30}}>
@@ -40,7 +40,7 @@ export default function AccountDetail(){
                                 paddingRight: 60, 
                                 paddingLeft: 90,
                                 textAlign: "right"}}>
-                            <label>Tên</label>
+                            <label>Full name</label>
                         </td>
 
                         <td style={{paddingTop: 20}}>
@@ -57,21 +57,19 @@ export default function AccountDetail(){
                         </td>
                         <td style={{paddingTop: 20, textAlign:"left"}}>
                             {email} 
-                                                                       
                         </td>
                     </tr>
                     
-                    <tr className="sdt">
+                    <tr className="phonenumber">
                     <td 
                         style={{paddingTop: 20, 
                                 paddingRight: 60, 
                                 paddingLeft: 90,
                                 textAlign: "right"}}>
-                            <label>Số điện thoại</label>
+                            <label>Phone number</label>
                         </td>
                         <td style={{paddingTop: 20, textAlign:"left"}}>
                             {phone} 
-                                                                         
                         </td>
                     </tr>
                     <tr className="address">
@@ -80,7 +78,7 @@ export default function AccountDetail(){
                                 paddingRight: 60, 
                                 paddingLeft: 90,
                                 textAlign: "right"}}>
-                            <label>Địa chỉ</label>
+                            <label>Address</label>
                         </td>
                         <td style={{paddingTop: 20, textAlign:"left"}}>
                         <label style={{height: 40, width: 350, paddingRight: 300}}>{address} </label> 

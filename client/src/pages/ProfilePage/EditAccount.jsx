@@ -51,7 +51,7 @@ function EditAccountDetail(){
                                 minWidth: '100px'
                             }}
                         >
-                            <label>Tên đăng nhập: </label>
+                            <label>Username: </label>
                         </td>
                         <Input 
                             className="usernameLabel"
@@ -101,7 +101,7 @@ function EditAccountDetail(){
                                 textAlign: "right"
                             }}
                         >
-                            <label>Số điện thoại: </label>
+                            <label>Phone number: </label>
                         </td>
                         <td>
                             <Input defaultValue={phone || ''}  onChange={(e)=>setPhone(e.target.value)}/>

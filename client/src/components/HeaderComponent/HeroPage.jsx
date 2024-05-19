@@ -52,7 +52,7 @@ function HeroPage() {
             color="text.secondary"
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
-            So sánh giá sản phẩm từ các nhà bán Tiki, Shoppe,...
+            Get the best price from the Internet
           </Typography>
         </Stack>
       </Container>

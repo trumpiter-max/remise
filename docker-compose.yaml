@@ -15,7 +15,10 @@ services:
       - redis
     volumes:
       - ./client:/var/www/client
-      - client-data:/var/www/client/build/
+      - ./client/node_modules:/var/www/client/node_modules
+      - client-data:/var/www/client/build
+    stdin_open: true
+    tty: true
     networks:
       - remise-network
 

@@ -35,22 +35,19 @@ export default function SignIn() {
       const {message}=response;
       // console.log(message.msgBody)
       if (message.msgError===false) {
-        // Đăng nhập thành công
-        console.log('Đăng nhập thành công');
+        console.log('User logged in successfully');
         console.log(response)
         setLoginError(false);
         setLoginSuccess('Here is a gentle confirmation that your action was successful.');
         setIsRegistered(true);
-        // Redirect hoặc thực hiện các hành động cần thiết sau khi đăng nhập thành công
       } else {
-        // Đăng nhập thất bại
-        console.log('Đăng nhập thất bại');
+        console.log('User login failed');
         setLoginError(true);
         setLoginSuccess('Registration failed. Please try again.');
         setIsRegistered(false);
       }
     } catch (error) {
-      console.error('Đã xảy ra lỗi khi đăng nhập:', error);
+      console.error('Sign in error:', error);
       setLoginError(true);
       setLoginSuccess('Registration failed. Please try again.');
       setIsRegistered(false);
@@ -91,18 +88,18 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Mật khẩu"
+              label="password"
               type="password"
               id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Nhớ mật khẩu"
+              label="Remember me"
             />
             {loginError && (
               <Typography variant="body2" color="error">
-                Email hoặc mật khẩu không đúng
+                Incorrect email or password
               </Typography>
             )}
             <Button
@@ -111,7 +108,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Đăng nhập
+              Sign In
               
             </Button>
             {isRegistered && (
@@ -122,12 +119,12 @@ export default function SignIn() {
             <Grid container>
               <Grid item xs>
                 <Link href="/reset-password" variant="body2">
-                  Quên mật khẩu
+                  Forget password
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
-                  {"Bạn chưa có tài khoản? Đăng ký"}
+                  {"Don't have account? Sign up now"}
                 </Link>
               </Grid>
             </Grid>

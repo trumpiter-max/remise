@@ -12,7 +12,7 @@ export const mainListItems = (
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Báo cáo" />
+      <ListItemText primary="Report" />
     </ListItemButton>
   </React.Fragment>
 );
@@ -26,13 +26,13 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Tháng này" />
+      <ListItemText primary="This month" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Khuyến mãi cuối năm" />
+      <ListItemText primary="End of year promotion" />
     </ListItemButton>
   </React.Fragment>
 );

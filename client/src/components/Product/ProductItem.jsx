@@ -22,9 +22,8 @@ function ProductItem({ productItem }) {
           <CardContent>
             <Typography gutterBottom variant="h6" component="div"
             display={'-webkit-box'}
-            sx={{display:'-webkit-box', WebkitBoxOrient: 'vertical', // Đặt hướng là dọc
-            WebkitLineClamp: 2, // Giới hạn số dòng
-            overflow: 'hidden', // Cắt bớt nội dung tràn
+            sx={{display:'-webkit-box', 
+            WebkitBoxOrioverflow: 'hidden',
             textOverflow: 'ellipsis',
             minHeight:'3em'}}
             overflow={'hidden'}
