@@ -30,7 +30,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - client-data:/usr/share/nginx/html
+      - client-data:/usr/share/nginx/html/
       - ./nginx/logs:/var/log/nginx/
     depends_on:
       - frontend

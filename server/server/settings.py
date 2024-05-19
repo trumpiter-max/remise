@@ -30,10 +30,11 @@ if os.getenv('DEBUG') == 'True':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
     'http://localhost',
     'http://127.0.0.1',
+    'https://crayfish-close-annually.ngrok-free.app',
 ]
 
 CORS_ALLOW_CREDENTIALS = True

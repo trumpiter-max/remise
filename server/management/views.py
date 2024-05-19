@@ -106,10 +106,33 @@ class ProductViewSet(viewsets.ModelViewSet):
     data = retrieve_data('product')
     if data == False:
         queryset = Product.objects.all()
-        serializer_class = ProductSerializer
     else:
-        serializer_class = data
+        queryset = data
+    serializer_class = ProductSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    
+    
+    def get_queryset(self):
+        keyword = self.request.query_params.get('keyword')
+        source = self.request.query_params.get('source')
+        discount_rate = self.request.query_params.get('discount_rate', 'true').lower() == 'true'
+        asc = self.request.query_params.get('asc', 'true').lower() == 'true'
+        order = '' if asc else '-'
+
+        try:
+            queryset = Product.objects.all()
+
+            if keyword:
+                queryset = queryset.filter(title__icontains=keyword)
+
+            if source:
+                queryset = queryset.filter(url__icontains=source)
+
+            queryset = queryset.order_by(f'{order}title', f'{order}discount', f'{order}discount_rate')
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        return queryset
 
 
 class GaleryViewSet(viewsets.ModelViewSet):
