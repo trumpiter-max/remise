@@ -6,7 +6,11 @@ import * as yup from 'yup'
 import InputField from '../../FormControl/InputField'
 import { Avatar, Button, Grid, Link, Typography} from '@mui/material'
 import LockOutlined from '@mui/icons-material/LockOutlined'
+import ReCAPTCHA from "react-google-recaptcha";
 
+function onChange(value) {
+    console.log("Captcha value:", value);
+}
 
 RegisterForm.propTypes = {
     onSubmit: PropTypes.func,
@@ -54,6 +58,10 @@ function RegisterForm(props) {
                 <InputField name="email" id="email" label ="Email" form={form} xs={12}/>
                 <InputField name="password" id="password" label ="Password" form={form} type='password' autoComplete="new-password" fullWidth/>
                 <InputField name="confpassword" id="confpassword" label ="Confirm Password" form={form} xs={12} type='password' autoComplete="new-password"/>
+                <ReCAPTCHA
+                    sitekey="6LcwUuIpAAAAAP5exrLgJ2kLifehAsnh-OwkT9g0"
+                    onChange={onChange}
+                />
                 <Button variant='contained' color='primary' fullWidth sx={{ mt: 3, mb: 2 }} type='submit'>Sign up</Button>
                 <Link href="/signin" variant="body2">
                     Account already? Sign in

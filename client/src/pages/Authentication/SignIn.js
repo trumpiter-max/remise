@@ -15,9 +15,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login } from '../../api/signinapi';
 import { Alert } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import ReCAPTCHA from "react-google-recaptcha";
 
 import i18n from "i18next";
 import { useTranslation } from "react-i18next";
+
+function onChange(value) {
+  console.log("Captcha value:", value);
+}
 
 const defaultTheme = createTheme();
 
@@ -98,6 +103,10 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
+            <ReCAPTCHA
+              sitekey="6LcwUuIpAAAAAP5exrLgJ2kLifehAsnh-OwkT9g0"
+              onChange={onChange}
+            />,
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
