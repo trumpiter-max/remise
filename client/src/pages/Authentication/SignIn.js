@@ -16,9 +16,14 @@ import { login } from '../../api/signinapi';
 import { Alert } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
+import i18n from "i18next";
+import { useTranslation } from "react-i18next";
+
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const { t, i18n } = useTranslation();
+
   const [loginError, setLoginError] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState('');
@@ -70,7 +75,7 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            ĐĂNG NHẬP
+            SIGN IN
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
