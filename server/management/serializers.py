@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Role, User, Category, Product, Galery, FeedBack, Review, Rank
+from .models import Role, User, Category, Product, Galery, FeedBack, Review, Rank, Favorite
 
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -39,4 +39,9 @@ class ReviewSerializer(serializers.ModelSerializer):
 class RankSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rank
+        fields = '__all__'
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorite
         fields = '__all__'

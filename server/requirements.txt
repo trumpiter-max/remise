@@ -13,3 +13,4 @@ requests
 g4f[all]
 redis
 django-redis
+payos

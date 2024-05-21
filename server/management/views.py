@@ -4,6 +4,7 @@ from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -21,6 +22,7 @@ from .models import (
     Galery,
     FeedBack,
     Review,
+    Favorite
 )
 from .serializers import (
     RoleSerializer,
@@ -30,6 +32,7 @@ from .serializers import (
     GalerySerializer,
     FeedBackSerializer,
     ReviewSerializer,
+    FavoriteSerializer
 )
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
@@ -169,3 +172,9 @@ class ReviewViewSet(viewsets.ModelViewSet):
             return Response(review_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(review_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+class FavoriteViewSet(viewsets.ModelViewSet):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
+
+    def get
