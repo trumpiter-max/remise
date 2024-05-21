@@ -1,2 +1,15 @@
+wheel
 django
 gunicorn
+djangorestframework 
+markdown  
+django-filter
+djangorestframework-simplejwt
+jsonschema
+django-cors-headers
+psycopg2-binary
+psycopg-binary
+requests
+redis
+django-redis
+sydney-py

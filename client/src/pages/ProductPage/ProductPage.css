@@ -1,0 +1,41 @@
+#product{
+    margin-right: 10%;
+    margin-left: 10%;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.product-similar h5{
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+.product-similar{
+}
+
+#product .product-card{
+    display: flex;
+    justify-items: center;
+    margin-bottom: 10px;
+}
+
+#product .product-introduction{
+    display: flex;
+    position: relative;
+}
+
+#product .product-react{
+    margin-left: 20px;
+}
+
+#product .product-inform h7{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;;
+}
+
+#product .product-inform{
+    position: absolute;
+    top:0;
+    right: 0;
+    border-radius: 5px;
+}

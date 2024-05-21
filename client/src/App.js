@@ -1,48 +1,50 @@
 import React from 'react';
-import logo from './resources/images/logo.svg';
 import './App.css';
-
-// Material components
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import { makeStyles } from '@emotion/styled';
+import { useTranslation } from 'react-i18next'
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import CssBaseline from '@mui/material/CssBaseline';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright of '}
-      <Link color="inherit" href="#">
-        Remise
-      </Link>{'© '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { routes } from './routes';
+import DefaultComponent from './components/DefaultComponent/DefaultComponent';
+import { Fragment } from 'react';
+import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 function App() {
+  const { t, i18n } = useTranslation()
+  const changeLanguageHandler = (lang) =>
+    {
+      i18n.changeLanguage("de")
+    }
+  useEffect(() => {
+    document.title = "Remise"
+  }, []);
   return (
-    <div className="App">
-      <CssBaseline />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello From Docker For React
-        </p>
-      </header> 
-      <Copyright />
+    <Provider store={store}>
+      <div className="App">
+      <Router>
+        <Routes>
+        { routes.map((route) =>{
+          const Page=route.page;
+          const Layout = route.isShowHeader? DefaultComponent:Fragment;
+          return (
+            <Route key={route.path} path={route.path} element={
+              <Layout>
+                <Page />
+              </Layout>
+            } />
+            )
+        })}
+        </Routes>
+      </Router>
     </div>
+    </Provider>
   );
-}
+      }
 
 export default App;

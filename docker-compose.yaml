@@ -1,81 +1,109 @@
-version: "3.8"
-
 services:
   frontend:
     build:
       context: ./client
       dockerfile: Dockerfile
+    cpus: 4
+    mem_limit: 5120m
     ports:
       - 3000:3000
     container_name: frontend
     environment:
-      - PORT=3000
       - NODE_ENV=development
     restart: always
+    depends_on:
+      - redis
     volumes:
       - ./client:/var/www/client
+      - ./client/node_modules:/var/www/client/node_modules
       - client-data:/var/www/client/build
+    stdin_open: true
+    tty: true
+    networks:
+      - remise-network
 
   webserver:
     container_name: webserver
-    restart: unless-stopped
+    restart: always
     build: ./nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - client-data:/usr/share/nginx/html
+      - client-data:/usr/share/nginx/html/
+      - ./nginx/logs:/var/log/nginx/
     depends_on:
       - frontend
+      - backend
+    networks:
+      - remise-network
 
-  cache:
+  redis:
     restart: always
-    container_name: cache
+    container_name: redis
     image: redis:latest
+    command: redis-server --save 60 1 --loglevel warning
     ports:
       - "6379:6379"
     volumes:
       - redis-data:/data
+    networks:
+      - remise-network
+
+  database:
+    image: postgres:16.2-alpine3.19
+    restart: always
+    container_name: database
+    cpus: 4
+    mem_limit: 5120m
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=remise
+      - POSTGRES_PASSWORD=remise
+      - POSTGRES_DB=remisedb
+    volumes:
+      - ./entrypoint/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+      - ./entrypoint/postgresql.conf:/etc/postgresql/postgresql.conf
+      - db-data:/var/lib/postgresql/data/
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    networks:
+      - remise-network
 
   backend:
     container_name: backend
     restart: always
-    links:
-      - database
-      - cache
     build:
       context: ./server
       dockerfile: Dockerfile
+    cpus: 4
+    mem_limit: 5120m
     ports:
       - 8000:8000
-
-  database:
-    image: postgres:latest
-    ports:
-      - 15432:5432
     environment:
-      - POSTGRES_PASSWORD=test
-      - PGADMIN_DEFAULT_EMAIL=test@test.test
-      - PGADMIN_DEFAULT_PASSWORD=test
-    volumes:
-      - db-data:/var/lib/postgresql/data/
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  pgadmin:
-    image: dpage/pgadmin4
-    ports:
-      - 15433:80
-    environment:
-      - POSTGRES_PASSWORD=test
-      - PGADMIN_DEFAULT_EMAIL=test@test.test
-      - PGADMIN_DEFAULT_PASSWORD=test
+      - PYTHONUNBUFFERED=1
+      - POSTGRES_USER=remise
+      - POSTGRES_PASSWORD=remise
+      - POSTGRES_DB=remisedb
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+      - DEBUG=True
+      - SECRET_KEY=django-insecure-&%b)m95ts^a-maxymf__2r0#=ykq#rn%__j#%k7=a8dptj7-m_
     depends_on:
       - database
+      - redis
+    networks:
+      - remise-network
     volumes:
-      - pgadmin-data:/var/lib/pgadmin/
+      - ./server:/var/www/server
+      - ./server/cache:/var/www/server/cache
 
 volumes:
   client-data:
   redis-data:
   db-data:
-  pgadmin-data:
+
+networks:
+  remise-network:
+    name: remise-network
+    driver: bridge
