@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'authentication.apps.AuthenticationConfig',
     "management.apps.ManagementConfig",
+    "cart",
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
 ]
 
 ROOT_URLCONF = "server.urls"
