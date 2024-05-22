@@ -8,12 +8,11 @@ import { useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 function ProfilePage() {
-  const navigate = useNavigate(); // Tạo hàm điều hướng
+  const navigate = useNavigate(); 
 
   const handleLogout = () => {
-    // Kiểm tra nếu currentUser không tồn tại, chuyển hướng đến trang mong muốn
       localStorage.setItem('currentUser', false);
-      navigate('..'); // Chuyển hướng đến trangchủ
+      navigate('..');
   };
   return (
     <div>
@@ -55,7 +54,7 @@ const SearchInput = () => {
     <div className="search-container">
       <input
         type="text"
-        placeholder="Tìm kiếm..."
+        placeholder="Search..."
         style={{
           borderRadius: '5px',
           padding: '8px',

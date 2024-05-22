@@ -34,7 +34,7 @@ function NoticeItem({noticeItem}) {
                 <Button onClick={handleRemoveFromNotification(noticeItem.id)}>Delete</Button>
             </CardContent>
         </Box>
-      </Card>
+    </Card>
     )
 }
 

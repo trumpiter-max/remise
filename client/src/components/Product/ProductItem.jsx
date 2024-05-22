@@ -34,7 +34,7 @@ function ProductItem({ productItem }) {
               {productItem.discount} VND
             </Typography>
             <Typography variant="body2" color="red" >
-              Giảm: {productItem.discount_rate}%
+              Discount: {productItem.discount_rate}%
             </Typography>
           </CardContent>
         </CardActionArea>

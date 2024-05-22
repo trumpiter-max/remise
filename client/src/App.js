@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { useTranslation } from 'react-i18next'
+
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -16,11 +16,6 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 
 function App() {
-  const { t, i18n } = useTranslation()
-  const changeLanguageHandler = (lang) =>
-    {
-      i18n.changeLanguage("de")
-    }
   useEffect(() => {
     document.title = "Remise"
   }, []);

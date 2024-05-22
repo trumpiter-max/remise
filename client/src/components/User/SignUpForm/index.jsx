@@ -6,7 +6,11 @@ import * as yup from 'yup'
 import InputField from '../../FormControl/InputField'
 import { Avatar, Button, Grid, Link, Typography} from '@mui/material'
 import LockOutlined from '@mui/icons-material/LockOutlined'
+import ReCAPTCHA from "react-google-recaptcha";
 
+function onChange(value) {
+    console.log("Captcha value:", value);
+}
 
 RegisterForm.propTypes = {
     onSubmit: PropTypes.func,
@@ -15,10 +19,10 @@ RegisterForm.propTypes = {
 function RegisterForm(props) {
     // const classes = useStyles();
     const schema=yup.object().shape({
-        username: yup.string().required('Hãy điền tên').min(1, 'Hãy điền tên đăng nhập của bạn!'),
-        email: yup.string().email('Invalid email').required('Hãy điền email của bạn'),
-        password: yup.string().min(6, 'Mật khẩu tối thiểu 6 kí tự.'),
-        confpassword: yup.string().oneOf([yup.ref('password'), null], 'Mật khẩu không giống nhau.').required('Hãy nhập lại mật khẩu!'),
+        username: yup.string().required('Invalid name').min(1, 'Type your username'),
+        email: yup.string().email('Invalid email').required('Type your email'),
+        password: yup.string().min(6, 'Password must be at least 6 characters').required('Type your password'),
+        confpassword: yup.string().oneOf([yup.ref('password'), null], 'Password is not same').required('Check your password again'),
     })
     const form 
         = useForm({
@@ -31,7 +35,7 @@ function RegisterForm(props) {
         resolver: yupResolver(schema),
     });
     const submitHandler= async(values)=>{
-        const {onSubmit}= props;//??sao bỏ
+        const {onSubmit}= props;
         if (onSubmit){
             try{
                 await onSubmit(values);
@@ -47,16 +51,20 @@ function RegisterForm(props) {
                 <LockOutlined></LockOutlined>
             </Avatar>
             <Typography className='title' component="h3" variant="h5" mt={2}>
-                ĐĂNG KÝ TÀI KHOẢN
+                SIGN UP
             </Typography>
             <form onSubmit={form.handleSubmit(submitHandler)}>
-                <InputField name="username" id="username" label ="Tên Đăng Nhập" form={form} xs={12}/>
+                <InputField name="username" id="username" label ="Username" form={form} xs={12}/>
                 <InputField name="email" id="email" label ="Email" form={form} xs={12}/>
-                <InputField name="password" id="password" label ="Mật khẩu" form={form} type='password' autoComplete="new-password" fullWidth/>
-                <InputField name="confpassword" id="confpassword" label ="Xác nhận mật khẩu" form={form} xs={12} type='password' autoComplete="new-password"/>
-                <Button variant='contained' color='primary' fullWidth sx={{ mt: 3, mb: 2 }} type='submit'>Đăng ký</Button>
+                <InputField name="password" id="password" label ="Password" form={form} type='password' autoComplete="new-password" fullWidth/>
+                <InputField name="confpassword" id="confpassword" label ="Confirm Password" form={form} xs={12} type='password' autoComplete="new-password"/>
+                <ReCAPTCHA
+                    sitekey="6LcwUuIpAAAAAP5exrLgJ2kLifehAsnh-OwkT9g0"
+                    onChange={onChange}
+                />
+                <Button variant='contained' color='primary' fullWidth sx={{ mt: 3, mb: 2 }} type='submit'>Sign up</Button>
                 <Link href="/signin" variant="body2">
-                  Bạn đã có tài khoản? Đăng nhập tại đây
+                    Account already? Sign in
                 </Link>
             </form>
         </Grid>

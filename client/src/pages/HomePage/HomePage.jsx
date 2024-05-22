@@ -3,7 +3,11 @@ import { Button, Grid, IconButton, InputBase, Paper, Typography } from '@mui/mat
 import SearchIcon from '@mui/icons-material/Search';
 import ProductList from '../../components/Product/ProductList';
 
+import i18n from "i18next";
+import { useTranslation } from "react-i18next";
+
 function Deals() {
+  const { t, i18n } = useTranslation();
   const [allProducts, setAllProducts] = useState([]); 
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +49,7 @@ function Deals() {
       <Paper component="form" sx={{ p: '1px 4px', display: 'flex', alignItems: 'center', alignSelf: 'stretch' }}>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Find products"
+          placeholder={t('search')}
           type='text'
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -56,7 +60,7 @@ function Deals() {
         </IconButton>
       </Paper>
       
-      <Button color="primary" variant="text" size="small" component="a" href="/searchform/" target="_blank">Filter</Button>
+      <Button color="primary" variant="text" size="small" component="a" href="/searchform/" target="_blank">{t("filter")}</Button>
       <Grid sx={{display: 'flex'}} mb={1} mt={2}>
         <Typography color={'primary'} sx={{mr:1}} variant='h5'>
           {searchTerm ? 'Search results' : 'Recommendation'}

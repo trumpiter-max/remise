@@ -12,11 +12,11 @@ export default function AccountDetail(){
     return(
         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Typography textAlign={'left'}><h3>Thông tin cá nhân của tôi</h3></Typography>
+                <Typography textAlign={'left'}><h3>Personal information</h3></Typography>
                 <Button style={{ height: 40, width: 120, marginLeft: 400 }}>
                     <Link href = "/editaccount"  sx={
                         {textDecoration: 'none'}
-                    }>Chỉnh sửa</Link>
+                    }>Edit</Link>
                 </Button>
             </div>
             <form>
