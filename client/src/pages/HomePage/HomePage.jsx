@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Grid, IconButton, InputBase, Paper, Typography } from '@mui/material';
+import { Button, Grid, IconButton, InputBase, Paper, Typography, Select, MenuItem } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ProductList from '../../components/Product/ProductList';
 
@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 
 function Deals() {
   const { t, i18n } = useTranslation();
+  const rootDomain = 'http://127.0.0.1:8000/api/v1/management/products/';
   const [allProducts, setAllProducts] = useState([]); 
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,9 +16,14 @@ function Deals() {
   const itemsPerPage = 10;
   const [page, setPage] = useState(1);
 
+  // filter field
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedDiscountRate, setSelectedDiscountRate] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState('');
+
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://127.0.0.1:8000/api/v1/management/products/')
+    fetch(rootDomain)
       .then(response => response.json())
       .then(data => {
         setAllProducts(data);
@@ -38,10 +44,28 @@ function Deals() {
   };
 
   const handleSearch = () => {
-    const results = allProducts.filter((product) =>
-      product.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setVisibleProducts(results);
+    let filteredData = allProducts;
+    if (searchTerm) {
+      filteredData = filteredData.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    }
+    console.log(filteredData);
+    setVisibleProducts(filteredData.slice(0, itemsPerPage));
+  }
+
+  const handleFilter = () => {
+    let filteredData = allProducts;
+
+    if (selectedCategory) {
+      filteredData = filteredData.filter(product => product.category === selectedCategory);
+    }
+    if (selectedDiscountRate) {
+      filteredData = filteredData.filter(product => product.discount === selectedDiscountRate);
+    }
+    if (selectedPrice) {
+      filteredData = filteredData.filter(product => product.price === selectedPrice);
+    }
+
+    setVisibleProducts(filteredData.slice(0, itemsPerPage));
   }
 
   return (
@@ -59,8 +83,39 @@ function Deals() {
           </Button>
         </IconButton>
       </Paper>
+
+      <paper>
+        <Select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          displayEmpty
+          inputProps={{ 'aria-label': 'category' }}>
+          <MenuItem value="">{t("allcategory")}</MenuItem>
+          <MenuItem value="shirt">Shirts</MenuItem>
+          <MenuItem value="pants">Pants</MenuItem>
+        </Select>
+        <Select
+          value={selectedDiscountRate}
+          onChange={(e) => setSelectedDiscountRate(e.target.value)}
+          displayEmpty
+          inputProps={{ 'aria-label': 'discount rate' }}>
+          <MenuItem value="">{t("alldiscountrate")}</MenuItem>
+          <MenuItem value="asc">{t("discountascending")}</MenuItem>
+          <MenuItem value="desc">{t("discountdescending")}</MenuItem>
+        </Select>
+        <Select
+          value={selectedPrice}
+          onChange={(e) => setSelectedPrice(e.target.value)}
+          displayEmpty
+          inputProps={{ 'aria-label': 'price' }}>
+          <MenuItem value="">{t("allprice")}</MenuItem>
+          <MenuItem value="asc">{t("priceascending")}</MenuItem>
+          <MenuItem value="desc">{t("pricedescending")}</MenuItem>
+        </Select>
+        <Button color="primary" variant="contained" size="small" component="a" onClick={handleFilter} target="_blank">{t("filterbutton")}</Button>
+      </paper>
       
-      <Button color="primary" variant="text" size="small" component="a" href="/searchform/" target="_blank">{t("filter")}</Button>
+      <Button color="primary" variant="text" size="small" component="a" href="/searchform/" target="_blank"> {t("aifilter")} </Button>
       <Grid sx={{display: 'flex'}} mb={1} mt={2}>
         <Typography color={'primary'} sx={{mr:1}} variant='h5'>
           {searchTerm ? 'Search results' : 'Recommendation'}

@@ -5,6 +5,15 @@
     "remember": "Lưu phiên đăng nhập",
     "reccommendation": "Gợi ý cho bạn",
     "search": "Tìm kiếm sản phẩm",
-    "filter": "Bộ lọc",
-    "loadmore": "Xem thêm"
+    "aifilter": "Bộ lọc với AI",
+    "loadmore": "Xem thêm",
+    "searchresult": "Kết quả tìm kiếm",
+    "allcategory": "Tất cả danh mục",
+    "alldiscountrate": "Tất cả mức giảm giá",
+    "allprice": "Tất cả mức giá",
+    "discountascending": "Tỉ lệ giảm giá tăng dần",
+    "discountdescending": "Tỉ lệ giảm giá giảm dần",
+    "priceascending": "Giá tăng dần",
+    "pricedescending": "Giá giảm dần",
+    "filterbutton": "Lọc sản phẩm"
 }

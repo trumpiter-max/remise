@@ -8,12 +8,17 @@ import Button from '@mui/material/Button';
 import { Typography, Box } from '@mui/material';
 
 const categories = ['Electronics', 'Fashion', 'Books', 'Sports'];
-const sortingOptions = ['Price: Low to High', 'Price: High to Low', 'Newest', 'Oldest'];
+const sortingOptions = ['Price ascending', 'Price descending', 'Latest'];
 const review = ['Very Positive', 'Positive', 'Neutral', 'Negative', 'Very Negative'];
-const sales = ['In sale', 'Free ship' ];
-const label = ['Samsung', "Apple", "OnePlus", "Vivo", "Realme"];
+const sales = ['Deep discount', 'Free shipping'];
+const label = ['Good price', "For luxury", "Best performance on price", "Cheap", "On trending"];
 ;
 export default function SearchForm() {
+
+  const handleSearch = () => {
+    console.log('Search');
+  }
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <Paper
@@ -84,10 +89,9 @@ export default function SearchForm() {
             </Grid>
           </Grid>
         </Box>
-        
-        
+
         <br></br>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={handleSearch}>
           Search
         </Button>
       </Paper>
