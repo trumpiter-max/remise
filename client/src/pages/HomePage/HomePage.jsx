@@ -55,13 +55,13 @@ function Deals() {
   const handleFilter = () => {
     let filteredData = allProducts;
 
-    if (selectedCategory) {
+    if (selectedCategory !== '') {
       filteredData = filteredData.filter(product => product.category === selectedCategory);
     }
-    if (selectedDiscountRate) {
+    if (selectedDiscountRate !== '') {
       filteredData = filteredData.filter(product => product.discount === selectedDiscountRate);
     }
-    if (selectedPrice) {
+    if (selectedPrice !== '') {
       filteredData = filteredData.filter(product => product.price === selectedPrice);
     }
 
@@ -91,8 +91,19 @@ function Deals() {
           displayEmpty
           inputProps={{ 'aria-label': 'category' }}>
           <MenuItem value="">{t("allcategory")}</MenuItem>
-          <MenuItem value="shirt">Shirts</MenuItem>
-          <MenuItem value="pants">Pants</MenuItem>
+          <MenuItem value="Điện thoại">{t("phone")}</MenuItem>
+          <MenuItem value="Sách">{t("book")}</MenuItem>
+          <MenuItem value="Đồ gia dụng">{t("houseware")}</MenuItem>
+          <MenuItem value="Phụ kiện">{t("accessory")}</MenuItem>
+          <MenuItem value="Đồ điện gia dụng">{t("homeelectric")}</MenuItem>
+          <MenuItem value="Mỹ phẩm">{t("cosmetics")}</MenuItem>
+          <MenuItem value="Đồ thể thao">{t("sportswear")}</MenuItem>
+          <MenuItem value="Phương tiện">{t("media")}</MenuItem>
+          <MenuItem value="Thời trang phụ nữ">{t("womenfashion")}</MenuItem>
+          <MenuItem value="Cửa hàng bách hóa">{t("convenientstore")}</MenuItem>
+          <MenuItem value="Thời trang nam">{t("menfashion")}</MenuItem>
+          <MenuItem value="Phụ kiện laptop">{t("laptopaccessories")}</MenuItem>
+          <MenuItem value="Giày nam">{t("menshoes")}</MenuItem>
         </Select>
         <Select
           value={selectedDiscountRate}

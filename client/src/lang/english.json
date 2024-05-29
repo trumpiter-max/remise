@@ -15,5 +15,18 @@
     "discountdescending": "Discount descending",
     "priceascending": "Price ascending",
     "pricedescending": "Price descending",
-    "filterbutton": "Show filtered products"
+    "filterbutton": "Show filtered products",
+    "phone": "Phone",
+    "book": "Book",
+    "houseware": "Houseware",
+    "accessory": "Accessory",
+    "homeelectric": "Home electric",
+    "cosmetics": "Cosmetics",
+    "sportswear": "Sportswear",
+    "media": "Media",
+    "womenfashion": "Women's fashion",
+    "convenientstore": "Convenient store",
+    "menfashion": "Men's fashion",
+    "laptopaccessories": "Laptop accessories",
+    "menshoes": "Men's shoes"
 }

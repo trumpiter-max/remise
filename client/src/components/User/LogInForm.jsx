@@ -20,7 +20,7 @@ function LogInForm(props) {
         resolver: yupResolver(schema),
     });
     const submitHandler= async(values)=>{
-        const {onSubmit}= props;//??sao bỏ
+        const {onSubmit}= props;
         if (onSubmit){
             try{
                 await onSubmit(values);
