@@ -56,13 +56,21 @@ function Deals() {
     let filteredData = allProducts;
 
     if (selectedCategory !== '') {
-      filteredData = filteredData.filter(product => product.category === selectedCategory);
+      var choice = parseInt(selectedCategory, 10);  
+      filteredData = filteredData.filter(product => product.category === choice);
     }
-    if (selectedDiscountRate !== '') {
-      filteredData = filteredData.filter(product => product.discount === selectedDiscountRate);
+    if (selectedDiscountRate === 'asc') {
+      filteredData = filteredData.sort((a, b) => b.discount_rate - a.discount_rate);
     }
-    if (selectedPrice !== '') {
-      filteredData = filteredData.filter(product => product.price === selectedPrice);
+    else if (selectedDiscountRate === 'desc') {
+      filteredData = filteredData.sort((a, b) => a.discount_rate - b.discount_rate);
+    }
+
+    if (selectedPrice === 'asc') {
+      filteredData = filteredData.sort((a, b) => b.price - a.price);
+    }
+    else if (selectedPrice === 'desc') {
+      filteredData = filteredData.sort((a, b) => a.price - b.price);
     }
 
     setVisibleProducts(filteredData.slice(0, itemsPerPage));
@@ -91,19 +99,19 @@ function Deals() {
           displayEmpty
           inputProps={{ 'aria-label': 'category' }}>
           <MenuItem value="">{t("allcategory")}</MenuItem>
-          <MenuItem value="Điện thoại">{t("phone")}</MenuItem>
-          <MenuItem value="Sách">{t("book")}</MenuItem>
-          <MenuItem value="Đồ gia dụng">{t("houseware")}</MenuItem>
-          <MenuItem value="Phụ kiện">{t("accessory")}</MenuItem>
-          <MenuItem value="Đồ điện gia dụng">{t("homeelectric")}</MenuItem>
-          <MenuItem value="Mỹ phẩm">{t("cosmetics")}</MenuItem>
-          <MenuItem value="Đồ thể thao">{t("sportswear")}</MenuItem>
-          <MenuItem value="Phương tiện">{t("media")}</MenuItem>
-          <MenuItem value="Thời trang phụ nữ">{t("womenfashion")}</MenuItem>
-          <MenuItem value="Cửa hàng bách hóa">{t("convenientstore")}</MenuItem>
-          <MenuItem value="Thời trang nam">{t("menfashion")}</MenuItem>
-          <MenuItem value="Phụ kiện laptop">{t("laptopaccessories")}</MenuItem>
-          <MenuItem value="Giày nam">{t("menshoes")}</MenuItem>
+          <MenuItem value="1">{t("phone")}</MenuItem>
+          <MenuItem value="2">{t("book")}</MenuItem>
+          <MenuItem value="3">{t("houseware")}</MenuItem>
+          <MenuItem value="4">{t("accessory")}</MenuItem>
+          <MenuItem value="5">{t("homeelectric")}</MenuItem>
+          <MenuItem value="6">{t("cosmetics")}</MenuItem>
+          <MenuItem value="7">{t("sportswear")}</MenuItem>
+          <MenuItem value="8">{t("media")}</MenuItem>
+          <MenuItem value="9">{t("womenfashion")}</MenuItem>
+          <MenuItem value="10">{t("convenientstore")}</MenuItem>
+          <MenuItem value="11">{t("menfashion")}</MenuItem>
+          <MenuItem value="12">{t("laptopaccessories")}</MenuItem>
+          <MenuItem value="13">{t("menshoes")}</MenuItem>
         </Select>
         <Select
           value={selectedDiscountRate}
