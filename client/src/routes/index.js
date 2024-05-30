@@ -9,6 +9,7 @@ import Dashboard from "../pages/ProductPage/Dashboard";
 import Account from "../pages/UserPages/ProfilePage/Account";
 import Notice from "../pages/UserPages/ProfilePage/Notice";
 import EditAccount from "../pages/ProfilePage/EditAccount";
+import FavoriteProduct from "../pages/ProductPage/FavoriteProduct";
 export const routes=[
     {
         path:'/',
@@ -18,6 +19,11 @@ export const routes=[
     {
         path:'/product/:id',
         page: ProductPage,
+        isShowHeader:true,
+    },
+    {
+        path:'/favoriteproduct',
+        page: FavoriteProduct,
         isShowHeader:true,
     },
     {

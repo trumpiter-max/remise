@@ -26,13 +26,13 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="This month" />
+      <ListItemText primary="Tháng này" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="End of year promotion" />
+      <ListItemText primary="Khuyến mãi cuối năm" />
     </ListItemButton>
   </React.Fragment>
 );
