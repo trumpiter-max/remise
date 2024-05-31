@@ -39,6 +39,8 @@ For Windows
 
 **Note** make sure you uncomment following the instructions of above file to create super user for the first time.
 
+In case, you have trouble about npm start docker, just run npm install in folder client first then run *docker compose* again.
+
 ## Wiki
 
 You can find more details how this website works at this [wiki](https://github.com/trumpiter-max/remise/wiki). We notices some highlight links that you can follow to know more:

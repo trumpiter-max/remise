@@ -20,6 +20,7 @@ function Deals() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedDiscountRate, setSelectedDiscountRate] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
+  const [selectedQuantity, setSelectedQuantity] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -73,6 +74,13 @@ function Deals() {
       filteredData = filteredData.sort((a, b) => a.price - b.price);
     }
 
+    if (selectedQuantity === 'asc') {ss
+      filteredData = filteredData.sort((a, b) => b.quantity_sold - a.quantity_sold);
+    }
+    else if (selectedQuantity === 'desc') {
+      filteredData = filteredData.sort((a, b) => a.quantity_sold - b.quantity_sold);
+    }
+    
     setVisibleProducts(filteredData.slice(0, itemsPerPage));
   }
 
@@ -130,6 +138,15 @@ function Deals() {
           <MenuItem value="">{t("allprice")}</MenuItem>
           <MenuItem value="asc">{t("priceascending")}</MenuItem>
           <MenuItem value="desc">{t("pricedescending")}</MenuItem>
+        </Select>
+        <Select
+          value={selectedQuantity}
+          onChange={(e) => setSelectedQuantity(e.target.value)}
+          displayEmpty
+          inputProps={{ 'aria-label': 'quantity' }}>
+          <MenuItem value="">{t("allquantity")}</MenuItem>
+          <MenuItem value="asc">{t("quantityascending")}</MenuItem>
+          <MenuItem value="desc">{t("quantitydescending")}</MenuItem>
         </Select>
         <Button color="primary" variant="contained" size="small" component="a" onClick={handleFilter} target="_blank">{t("filterbutton")}</Button>
       </paper>
