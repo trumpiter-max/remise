@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Button, Container, Grid, IconButton, MenuItem, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Grid, IconButton, MenuItem, Select, Toolbar, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import HeroPage from './HeroPage';
+
+import i18n from "i18next";
+import { useTranslation } from "react-i18next";
+
+const languages = [
+  { value: "en", text: "English" },
+  { value: "vi", text: "Vietnamese" },
+];
 
 const logoStyle = {
   width: '50px',
@@ -11,6 +19,15 @@ const logoStyle = {
 };
 
 function HeaderComponent() {
+  const { t, i18n } = useTranslation();
+  const [lang, setLang] = useState(i18n.language || "en");
+
+  const changeLanguage = (e) => {
+    const languageValue = e.target.value;
+    i18n.changeLanguage(languageValue);
+    setLang(languageValue);
+  };
+  
   const location = useLocation();
   const isHome = location.pathname === '/';
   const [currentUser, setCurrentUser] = useState(false);
@@ -55,7 +72,7 @@ function HeaderComponent() {
               {/* Add your logo here */}
               {isHome && <Grid sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem onClick={() => window.scrollTo({ top: document.getElementById('deal').offsetTop, behavior: 'smooth' })} sx={{ py: '6px', px: '22px' }}>
-                  <Typography variant="body2" color="text.primary">Your reccommendation</Typography>
+                  <Typography variant="body2" color="text.primary"> {t('reccommendation')} </Typography>
                 </MenuItem>
                 <Grid flexGrow={2}></Grid>
               </Grid>}
@@ -63,11 +80,33 @@ function HeaderComponent() {
             <Grid sx={{ display: { md: 'flex' }, gap: 0.5, alignItems: 'center' }}>
               {!currentUser ? (
                 <div>
-                  <Button color="primary" variant="text" size="small" component="a" href="/signin/" target="_blank">Sign in</Button>
-                  <Button color="primary" variant="contained" size="small" component="a" href="signup" target="_blank">Sign up</Button>
+                    <select value={lang} onChange={changeLanguage}>
+                      {languages.map((item) => {
+                      return (
+                        <option key={item.value} value={item.value}>
+                          {item.text}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  <Button color="primary" variant="text" size="small" component="a" href="/signin/" target="_blank">{t("signin")}</Button>
+                  <Button color="primary" variant="contained" size="small" component="a" href="signup" target="_blank">{t("signup")}</Button>
                 </div>
               ) : (
+                <div style={{display:'flex'}}>
+                <div style={{marginRight:'20px'}}>
+                  <select>
+                      {languages.map((item) => {
+                      return (
+                        <option key={item.value} value={item.value}>
+                          {item.text}
+                        </option>
+                      );
+                    })}
+                    </select>
+                </div>
                 <AccountCircleIcon style={{cursor:'pointer'}} onClick={handleIconClick} color='primary'/>
+                </div>
               )}
             </Grid>
           </Toolbar>

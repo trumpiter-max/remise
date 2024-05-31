@@ -13,3 +13,4 @@ requests
 redis
 django-redis
 sydney-py
+payos

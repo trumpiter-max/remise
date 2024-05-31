@@ -1,14 +1,15 @@
 import HomePage from "../pages/HomePage/HomePage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import ProductPage from "../pages/ProductPage/ProductPage";
-import ResetPassword from "../pages/login/ResetPassword";
-import SignIn from "../pages/login/SignIn";
-import SignUp from "../pages/login/SignUp";
+import ResetPassword from "../pages/Authentication/ResetPassword";
+import SignIn from "../pages/Authentication/SignIn";
+import SignUp from "../pages/Authentication/SignUp";
 import SearchForm from "../components/FillterProduct/SearchForm";
 import Dashboard from "../pages/ProductPage/Dashboard";
 import Account from "../pages/UserPages/ProfilePage/Account";
 import Notice from "../pages/UserPages/ProfilePage/Notice";
 import EditAccount from "../pages/ProfilePage/EditAccount";
+import FavoriteProduct from "../pages/ProductPage/FavoriteProduct";
 export const routes=[
     {
         path:'/',
@@ -18,6 +19,11 @@ export const routes=[
     {
         path:'/product/:id',
         page: ProductPage,
+        isShowHeader:true,
+    },
+    {
+        path:'/favoriteproduct',
+        page: FavoriteProduct,
         isShowHeader:true,
     },
     {

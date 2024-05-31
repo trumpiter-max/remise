@@ -9,7 +9,7 @@ function LogInForm(props) {
     // const classes = useStyles();
     const schema=yup.object().shape({
         email: yup.string().email('Invalid email').required('Please enter your email'),
-        password: yup.string().min(6, 'Password must be at lease 6 characters'),
+        password: yup.string().min(6, 'Password must be at least 6 characters'),
     })
     const form 
         = useForm({
@@ -20,7 +20,7 @@ function LogInForm(props) {
         resolver: yupResolver(schema),
     });
     const submitHandler= async(values)=>{
-        const {onSubmit}= props;//??sao bỏ
+        const {onSubmit}= props;
         if (onSubmit){
             try{
                 await onSubmit(values);
@@ -43,7 +43,7 @@ function LogInForm(props) {
                 <InputField name="password" id="password" label ="Password" form={form} type='password' autoComplete="new-password" fullWidth/>
                 <Button variant='contained' color='primary' fullWidth sx={{ mt: 3, mb: 2 }} type='submit'>Sign Up</Button>
                 <Link href="/signin" variant="body2">
-                  Already have an account? Sign in
+                    Already have an account? Sign in
                 </Link>
             </form>
         </Grid>

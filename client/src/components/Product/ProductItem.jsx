@@ -23,6 +23,8 @@ function ProductItem({ productItem }) {
             <Typography gutterBottom variant="h6" component="div"
             display={'-webkit-box'}
             sx={{display:'-webkit-box', 
+            WebkitBoxOrient: 'vertical', // Đặt hướng là dọc
+            WebkitLineClamp: 2,
             WebkitBoxOrioverflow: 'hidden',
             textOverflow: 'ellipsis',
             minHeight:'3em'}}
@@ -34,7 +36,7 @@ function ProductItem({ productItem }) {
               {productItem.discount} VND
             </Typography>
             <Typography variant="body2" color="red" >
-              Giảm: {productItem.discount_rate}%
+              Discount: {productItem.discount_rate}%
             </Typography>
           </CardContent>
         </CardActionArea>

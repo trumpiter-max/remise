@@ -15,10 +15,20 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login } from '../../api/signinapi';
 import { Alert } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import ReCAPTCHA from "react-google-recaptcha";
+
+import i18n from "i18next";
+import { useTranslation } from "react-i18next";
+
+function onChange(value) {
+  console.log("Captcha value:", value);
+}
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const { t, i18n } = useTranslation();
+
   const [loginError, setLoginError] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState('');
@@ -27,7 +37,6 @@ export default function SignIn() {
     const formData = new FormData(event.currentTarget);
     const email = formData.get('email');
     const password = formData.get('password');
-
     try {
       const response = await login(JSON.stringify({ email, password }));
       console.log(JSON.stringify({ email, password }))
@@ -70,7 +79,7 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            ĐĂNG NHẬP
+            SIGN IN
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -93,6 +102,10 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
+            <ReCAPTCHA
+              sitekey="6LcwUuIpAAAAAP5exrLgJ2kLifehAsnh-OwkT9g0"
+              onChange={onChange}
+            />,
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

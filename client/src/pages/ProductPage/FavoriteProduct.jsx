@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '@mui/material/Card';
 import { CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-
+import image1 from '../../resources/images/image.png'
 const products = [
     { name: 'Product 1', image: image1, price: '100.000' },
     { name: 'Product 2', image: image1, price: '200.000' },
@@ -33,8 +33,6 @@ const ProductCard = ({ product }) => {
       </Card>
     );
 };
-
-
 
 const ProductList = () => {
   

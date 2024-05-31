@@ -2,7 +2,11 @@ import { Typography } from '@mui/material'
 import { Box, Container, Stack } from '@mui/system'
 import React from 'react'
 
+import i18n from "i18next";
+import { useTranslation } from "react-i18next";
+
 function HeroPage() {
+  const { t, i18n } = useTranslation();
   return (
     <Box
       id="hero"
@@ -52,7 +56,7 @@ function HeroPage() {
             color="text.secondary"
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
-            Get the best price from the Internet
+            {t("title")}
           </Typography>
         </Stack>
       </Container>

@@ -58,13 +58,14 @@ export default function SignUp() {
       password
     }
     console.log('Form submitt: ', JSON.stringify(signUpData));
-    register(JSON.stringify(signUpData));
     try {
       // const response = await axiosClient.post('api/signup', value);
       const response = await register(JSON.stringify(signUpData));
       console.log('Registration successful: ', response);
       setRegisterSuccess('Here is a gentle confirmation that your action was successful.');
       setIsRegistered(true);
+      localStorage.setItem('username', username);
+      localStorage.getItem('email', email)
     }
     catch(error){
       console.log('Error during registration: ', error);
