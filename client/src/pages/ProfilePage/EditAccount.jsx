@@ -31,7 +31,6 @@ function EditAccountDetail(){
         };
         try {
             const response = await putUser(updatedProfile);
-            const {message}=response;
             console.log(updatedProfile);
             if (username1)localStorage.setItem('username', username1);
             if (name1) localStorage.setItem('name', name1);
@@ -124,7 +123,7 @@ function EditAccountDetail(){
                         <td></td>              
                     </tr>
                 </table>
-                <Button onClick={handleSave}>Save</Button>
+                <Button onClick={handleSave} aria-label="save-edit-information">Save</Button>
             </form>
         </Paper>
     );

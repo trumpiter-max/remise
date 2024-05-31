@@ -2,11 +2,11 @@ import React from 'react'
 import './ProfilePage.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-import AccountDetail from '../../../components/AccountDetail/AccountDetail'
+import AccountDetail from '../../components/AccountDetail/AccountDetail'
 import { Badge, Button, Stack, Typography } from '@mui/material';
 import { Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../../api/signinapi';
+import { logout } from '../../api/userapi';
 
 function Account() {
   const username=localStorage.getItem('username');
@@ -44,7 +44,7 @@ function Account() {
             <Link href='/notice' sx={{textDecoration:'none', color:'black', ml:1}} ml={1}>Thông báo</Link>
           </div>
           <div className='notice left-side-bar-item' onClick={handleLogout}>
-            <Button ml={1}>Logout</Button>
+            <Button ml={1} aria-label='log-out'>Logout</Button>
           </div>
         </div>
         <div className='profile-body'>

@@ -3,7 +3,6 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Paper from "@mui/material/Paper";
 import Grid from '@mui/material/Grid';
-//import Button from '@material-ui/Button';
 import Button from '@mui/material/Button';
 import { Typography, Box } from '@mui/material';
 
@@ -91,7 +90,7 @@ export default function SearchForm() {
         </Box>
 
         <br></br>
-        <Button variant="contained" color="primary" onClick={handleSearch}>
+        <Button variant="contained" color="primary" onClick={handleSearch} aria-label='btn-search-form'>
           Search
         </Button>
       </Paper>

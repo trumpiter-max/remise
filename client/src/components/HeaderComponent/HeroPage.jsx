@@ -2,7 +2,6 @@ import { Typography } from '@mui/material'
 import { Box, Container, Stack } from '@mui/system'
 import React from 'react'
 
-import i18n from "i18next";
 import { useTranslation } from "react-i18next";
 
 function HeroPage() {

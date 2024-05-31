@@ -23,7 +23,7 @@ function ProductItem({ productItem }) {
             <Typography gutterBottom variant="h6" component="div"
             display={'-webkit-box'}
             sx={{display:'-webkit-box', 
-            WebkitBoxOrient: 'vertical', // Đặt hướng là dọc
+            WebkitBoxOrient: 'vertical',
             WebkitLineClamp: 2,
             WebkitBoxOrioverflow: 'hidden',
             textOverflow: 'ellipsis',

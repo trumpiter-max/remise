@@ -12,13 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { login } from '../../api/signinapi';
 import { Alert } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import ReCAPTCHA from "react-google-recaptcha";
 import {useNavigate} from 'react-router-dom'
-import i18n from "i18next";
-import { useTranslation } from "react-i18next";
+import { login } from '../../api/userapi';
 
 function onChange(value) {
   console.log("Captcha value:", value);
@@ -27,7 +25,7 @@ function onChange(value) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const { t, i18n } = useTranslation();
+  // const { t, i18n } = useTranslation();
   const navigate= useNavigate();
   const [loginError, setLoginError] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
@@ -116,6 +114,7 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              aria-label='btn-signin'
             >
               Sign In
               

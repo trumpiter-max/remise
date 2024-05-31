@@ -3,10 +3,8 @@ import './ProfilePage.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { Badge, Typography } from '@mui/material';
-import tiviImage from '../../../resources/images/HomePage/tivi.jpg'
-import NoticeList from '../../../components/User/ProfilePage/NoticeItem/NoticeList';
 import { Link } from '@mui/material';
-
+import NoticeList from '../../components/User/ProfilePage/NoticeItem/NoticeList'
 
 function NoticePage() {
   return (
@@ -34,59 +32,6 @@ function NoticePage() {
     </div>
   )
 }
-
-const noticeList=[
-    {
-        id:1,
-        name: 'TiviSony',
-        thumbnailUrl: tiviImage,
-        price: 10,
-        shop: 'Shoppe',
-    },
-    {
-        id:2,
-        name: 'TiviSony2',
-        thumbnailUrl: tiviImage,
-        price: 10,
-        shop: 'Lazada',
-    },
-    {
-        id:3,
-        name: 'TiviSony3',
-        thumbnailUrl: tiviImage,
-        price: 10,
-        shop: 'Shoppe',
-    },
-    {
-        id:4,
-        name: 'TiviSony4',
-        thumbnailUrl: tiviImage,
-        price: 10,
-        shop: 'Shoppe',
-    },
-    {
-      id:4,
-      name: 'TiviSony4',
-      thumbnailUrl: tiviImage,
-      price: 10,
-      shop: 'Shoppe',
-    },
-    {
-        id:4,
-        name: 'TiviSony4',
-        thumbnailUrl: tiviImage,
-        price: 10,
-        shop: 'Shoppe',
-    },
-    {
-        id:4,
-        name: 'TiviSony4',
-        thumbnailUrl: tiviImage,
-        price: 10,
-        shop: 'Shoppe',
-    },
-  ]
-
 const SearchInput = () => {
   return (
     <div className="search-container">

@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Button, Container, Grid, IconButton, MenuItem, Select, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Grid, MenuItem, Toolbar, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import HeroPage from './HeroPage';
-
-import i18n from "i18next";
 import { useTranslation } from "react-i18next";
 
 const languages = [
   { value: "en", text: "English" },
   { value: "vi", text: "Vietnamese" },
 ];
-
-const logoStyle = {
-  width: '50px',
-  height: 'auto',
-  cursor: 'pointer',
-};
-
 function HeaderComponent() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language || "en");
@@ -39,18 +30,13 @@ function HeaderComponent() {
       const user = JSON.parse(storedUser);
       setCurrentUser(user);
     }
-  }, []);
+  }, [currentUser]);
 
   const handleIconClick = () => {
     if (currentUser) {
       navigate('/account');
     }
   };
-
-  const handleClickLogo = () => {
-    navigate('..');
-  }
-
   return (
     <div>
       <AppBar position='fixed' sx={{ boxShadow:0, backgroundColor:'transparent', backgroundImage:'none', mt:2 }}>
@@ -89,8 +75,8 @@ function HeaderComponent() {
                       );
                     })}
                   </select>
-                  <Button color="primary" variant="text" size="small" component="a" href="/signin/" target="_blank">{t("signin")}</Button>
-                  <Button color="primary" variant="contained" size="small" component="a" href="signup" target="_blank">{t("signup")}</Button>
+                  <Button color="primary" variant="text" size="small" component="a" href="/signin/" target="_blank" aria-label='btn-signin'>{t("signin")}</Button>
+                  <Button color="primary" variant="contained" size="small" component="a" href="signup" target="_blank" aria-label='btn-signup'>{t("signup")}</Button>
                 </div>
               ) : (
                 <div style={{display:'flex'}}>

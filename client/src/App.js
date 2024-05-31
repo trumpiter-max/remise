@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -12,16 +11,14 @@ import { routes } from './routes';
 import DefaultComponent from './components/DefaultComponent/DefaultComponent';
 import { Fragment } from 'react';
 import { useEffect } from 'react';
-import { Provider } from 'react-redux';
-import { store } from './store';
+import { Grid } from '@mui/material';
 
 function App() {
   useEffect(() => {
     document.title = "Remise"
   }, []);
   return (
-    <Provider store={store}>
-      <div className="App">
+    <Grid>
       <Router>
         <Routes>
         { routes.map((route) =>{
@@ -37,8 +34,7 @@ function App() {
         })}
         </Routes>
       </Router>
-    </div>
-    </Provider>
+    </Grid>
   );
       }
 

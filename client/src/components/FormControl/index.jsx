@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
 import { Controller } from 'react-hook-form';
-
 InputField.propTypes = {
     form:PropTypes.object.isRequired,
     name: PropTypes.string.isRequired,
@@ -21,7 +20,7 @@ function InputField(props) {
             control={form.control}
             render={({
             field: { onChange, onBlur, value, name, ref },
-            fieldState: { invalid, isTouched, isDirty, error },
+            fieldState: { error },
             }) => (
             <TextField
             error={!!error}
