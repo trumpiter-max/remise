@@ -7,17 +7,19 @@ export default function AccountDetail(){
     const name=localStorage.getItem('name');
     // const token=localStorage.getItem('token');
     const phone=localStorage.getItem('phone');
+    // const username=localStorage.getItem('username');
     const address=localStorage.getItem('address');
-    const [user, setUser]=useState(null)
+    const [user, setUser]=useState({})
     const [error, setError]= useState(null)
     useEffect(()=>{
         const fetchUser= async()=>{
           try{
             const response = await getUser();
-            if (response !== 200){
-              throw new Error('Network response was not ok');
-            }
+            console.log(response);
+           
             setUser(response);
+            localStorage.setItem("username",response.username);
+            localStorage.setItem("email",response.email);
           } catch(error){
             setError(error);
           }
@@ -45,13 +47,13 @@ export default function AccountDetail(){
                             <Typography>Tên đăng nhập</Typography>
                         </td>
 
-                        <td className="usernameInput"style={{paddingTop: 30, marginLeft:'100px'}}>
-                            <Typography style={{height: 40}}>{(user)?`${user.username}`:''}</Typography>
+                        <td className="usernameInput"style={{paddingTop: 30}}>
+                            <Typography style={{height: 40, textWrap:"wrap"}}>{user.username}</Typography>
                         </td>
                     </tr>
                     <tr>
                     <td 
-                        style={{paddingTop: 20,
+                        style={{
                                 textAlign: "right"}}>
                             <Typography>Tên</Typography>
                         </td>
@@ -66,7 +68,9 @@ export default function AccountDetail(){
                                 textAlign: "right"}}>
                             <Typography>Email</Typography>
                         </td>
-                        <td>{(user)?`${user.email}`:''}</td>
+                        <td style={{paddingTop:20, textWrap:"wrap"}}>
+                            {(user)?`${user.email}`:''}
+                        </td>
                     </tr>
                     
                     <tr className="phonenumber">

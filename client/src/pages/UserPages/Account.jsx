@@ -35,6 +35,7 @@ function Account() {
           </div>
           <div className='account left-side-bar-item'>
             <AccountCircleIcon color='primary'/>
+            {/* <Typography sx={{textDecoration:'none', color:'red', ml:1}}>Tài khoản</Typography> */}
             <Typography sx={{textDecoration:'none', color:'red', ml:1}}>Tài khoản</Typography>
           </div>
           <div className='notice left-side-bar-item'>

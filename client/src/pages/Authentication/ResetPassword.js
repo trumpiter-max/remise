@@ -92,6 +92,7 @@ export default function ResetPassword(){
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
+                        aria-label='btn-submit'
                     >
                     Reset
                     </Button>

@@ -30,7 +30,7 @@ function HeaderComponent() {
       const user = JSON.parse(storedUser);
       setCurrentUser(user);
     }
-  }, [currentUser]);
+  }, []);
 
   const handleIconClick = () => {
     if (currentUser) {

@@ -1,5 +1,6 @@
 //
 import axiosClient from './axiosClient';
+import Cookies from 'js-cookie'
 export const register =async (user)=>{
     try {
         const response = await axiosClient.post("/authentication/register", user);
@@ -27,7 +28,6 @@ export const login = async (user) => {
       const response = await axiosClient.post("/authentication/login", user);
       if (response.status === 200) {
         localStorage.setItem('currentUser', JSON.stringify(response.data));
-        // localStorage.setItem('token', response.data);
         return {
           message: {
             msgBody: 'Sign in successfully',
@@ -81,7 +81,7 @@ export const login = async (user) => {
 
 export const putUser =async (user)=>{
     try {
-        const response = await axiosClient.put("/authentication/user", user);
+        const response = await axiosClient.put("/authentication/user", JSON.stringify(user));
         return response.data;
     } catch (err) {
         return {
@@ -107,4 +107,20 @@ export const getUser =async ()=>{
             err,
         };
     }
+}
+
+function getCookieValue(cookieName) {
+  const name = cookieName + '=';
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(';');
+  for (let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return '';
 }

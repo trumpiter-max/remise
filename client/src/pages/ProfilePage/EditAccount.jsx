@@ -30,7 +30,7 @@ function EditAccountDetail(){
             address1
         };
         try {
-            const response = await putUser(updatedProfile);
+            const response = await putUser({username:username1,email:email1});
             console.log(updatedProfile);
             if (username1)localStorage.setItem('username', username1);
             if (name1) localStorage.setItem('name', name1);
