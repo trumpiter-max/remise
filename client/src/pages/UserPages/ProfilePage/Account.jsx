@@ -6,14 +6,25 @@ import AccountDetail from '../../../components/AccountDetail/AccountDetail'
 import { Badge, Button, Stack, Typography } from '@mui/material';
 import { Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../api/signinapi';
 
 function Account() {
   const username=localStorage.getItem('username');
   const navigate=useNavigate();
-  const handleLogout = () => {
+  const handleLogout = async () => {
     // Kiểm tra nếu currentUser không tồn tại, chuyển hướng đến trang mong muốn
+    try {
+      // const response = await axiosClient.post('api/signup', value);
+      const username=localStorage.getItem('username');
+      const email=localStorage.getItem('email');
+      const response = await logout({username, email});
+      console.log('Registration successful: ', response);
       localStorage.setItem('currentUser', null);
       navigate('..'); // Chuyển hướng đến trangchủ
+    }
+    catch(error){
+      console.log('Error during registration: ', error);
+    }
   };
   return (
     <div className='profile'>

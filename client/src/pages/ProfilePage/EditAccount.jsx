@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Badge, Input, Paper, Typography } from "@mui/material";
+import { Badge, Input, Link, Paper, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import './ProfilePage.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { Stack} from '@mui/material';
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { putUser } from "../../api/userapi";
 
 function EditAccountDetail(){
@@ -32,9 +32,6 @@ function EditAccountDetail(){
         try {
             const response = await putUser(updatedProfile);
             const {message}=response;
-            if(message.msgBody){
-                throw new Error("Fail to update!");
-            }
             console.log(updatedProfile);
             if (username1)localStorage.setItem('username', username1);
             if (name1) localStorage.setItem('name', name1);
@@ -45,8 +42,6 @@ function EditAccountDetail(){
             throw new Error("Fail to save user information!", error);
             
         }
-        
-        
         navigate('/account');
     };
 

@@ -6,7 +6,7 @@ import { getUser } from "../../api/userapi";
 export default function AccountDetail(){
     // const username=localStorage.getItem('username');
     const name=localStorage.getItem('name');
-    // const email=localStorage.getItem('email');
+    const token=localStorage.getItem('token');
     const phone=localStorage.getItem('phone');
     const address=localStorage.getItem('address');
     const [user, setUser]=useState(null)
@@ -31,10 +31,10 @@ export default function AccountDetail(){
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Typography textAlign={'left'}><h3>Personal information</h3></Typography>
                 <div style={{display:'absolute', top:0, right:0}}>
-                <Button style={{ height: 40}}>
+                <Button style={{ height: 40, marginLeft:'20px'}}>
                     <Link href = "/editaccount"  sx={
                         {textDecoration: 'none'}
-                    }>Chỉnh sửa thông tin người dùng</Link>
+                    }>CHỈNH SỬA</Link>
                 </Button>
                 </div>
             </div>
@@ -47,7 +47,7 @@ export default function AccountDetail(){
                             <label>Tên đăng nhập</label>
                         </td>
 
-                        <td className="usernameInput"style={{paddingTop: 30}}>
+                        <td className="usernameInput"style={{paddingTop: 30, marginLeft:'100px'}}>
                             <label style={{height: 40}}>{(user)?`${user.username}`:''}</label>
                         </td>
                     </tr>

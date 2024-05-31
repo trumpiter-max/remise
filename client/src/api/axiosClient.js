@@ -21,6 +21,10 @@ axios.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    // const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+    //     if (csrfToken) {
+    //         config.headers['X-CSRFToken'] = csrfToken;
+    // }
     return config;
   }, function (error) {
     // Do something with request error
