@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Button, Container, Grid, IconButton, MenuItem, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Grid, IconButton, MenuItem, Select, Toolbar, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import HeroPage from './HeroPage';
@@ -93,7 +93,20 @@ function HeaderComponent() {
                   <Button color="primary" variant="contained" size="small" component="a" href="signup" target="_blank">{t("signup")}</Button>
                 </div>
               ) : (
+                <div style={{display:'flex'}}>
+                <div style={{marginRight:'20px'}}>
+                  <select>
+                      {languages.map((item) => {
+                      return (
+                        <option key={item.value} value={item.value}>
+                          {item.text}
+                        </option>
+                      );
+                    })}
+                    </select>
+                </div>
                 <AccountCircleIcon style={{cursor:'pointer'}} onClick={handleIconClick} color='primary'/>
+                </div>
               )}
             </Grid>
           </Toolbar>

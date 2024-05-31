@@ -8,7 +8,7 @@ export const login = async (user) => {
     if (response.status === 200) {
       // Save the user data to localStorage for fast authentication
       localStorage.setItem('currentUser', JSON.stringify(response.data));
-      
+      localStorage.setItem('token', response.data);
       return {
         message: {
           msgBody: 'Sign in successfully',

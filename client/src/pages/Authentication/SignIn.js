@@ -37,7 +37,6 @@ export default function SignIn() {
     const formData = new FormData(event.currentTarget);
     const email = formData.get('email');
     const password = formData.get('password');
-
     try {
       const response = await login(JSON.stringify({ email, password }));
       console.log(JSON.stringify({ email, password }))
