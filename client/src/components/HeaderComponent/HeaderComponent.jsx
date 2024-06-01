@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Button, Container, Grid, IconButton, MenuItem, Select, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Grid, MenuItem, Toolbar, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import HeroPage from './HeroPage';
-
-import i18n from "i18next";
 import { useTranslation } from "react-i18next";
+
+
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 
 const languages = [
   { value: "en", text: "English" },
   { value: "vi", text: "Vietnamese" },
 ];
-
-const logoStyle = {
-  width: '50px',
-  height: 'auto',
-  cursor: 'pointer',
-};
-
 function HeaderComponent() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language || "en");
@@ -46,11 +42,6 @@ function HeaderComponent() {
       navigate('/account');
     }
   };
-
-  const handleClickLogo = () => {
-    navigate('..');
-  }
-
   return (
     <div>
       <AppBar position='fixed' sx={{ boxShadow:0, backgroundColor:'transparent', backgroundImage:'none', mt:2 }}>
@@ -79,8 +70,8 @@ function HeaderComponent() {
             </Grid>
             <Grid sx={{ display: { md: 'flex' }, gap: 0.5, alignItems: 'center' }}>
               {!currentUser ? (
-                <div>
-                    <select value={lang} onChange={changeLanguage}>
+                <div >
+                  {/*<select value={lang} onChange={changeLanguage}>
                       {languages.map((item) => {
                       return (
                         <option key={item.value} value={item.value}>
@@ -89,8 +80,26 @@ function HeaderComponent() {
                       );
                     })}
                   </select>
-                  <Button color="primary" variant="text" size="small" component="a" href="/signin/" target="_blank">{t("signin")}</Button>
-                  <Button color="primary" variant="contained" size="small" component="a" href="signup" target="_blank">{t("signup")}</Button>
+                  */}
+
+                  <FormControl variant="outlined" maxWidth >
+                    <InputLabel id="language-select-label">Language</InputLabel>
+                    <Select
+                      labelId="language-select-label"
+                      value={lang}
+                      onChange={changeLanguage}
+                      label="Language"
+                    >
+                      {languages.map((item) => (
+                        <MenuItem key={item.value} value={item.value}>
+                          {item.text}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  <Button  color="primary"  style={{ padding: 15 }} variant="text" size="small" component="a" href="/signin/" target="_blank" aria-label='btn-signin'>{t("signin")}</Button>
+                  <Button color="primary" variant="contained" size="small" component="a" href="signup" target="_blank" aria-label='btn-signup'>{t("signup")}</Button>
                 </div>
               ) : (
                 <div style={{display:'flex'}}>

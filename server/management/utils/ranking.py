@@ -15,7 +15,7 @@ async def rank_brand(category, brand_list, location, features) -> None:
         json_string = response[start:end+1]
         json_string =  re.sub(r'\[\^.*?\^\]', '', json_string)
         result = json.loads(json_string)
-        print(result)
+        return result
 
 # Test function
 # asyncio.run(rank_brand("smart phone", ["Apple", "Samsung", "Google", "Huawei", "Xiaomi"], "United States", "camera quality"))

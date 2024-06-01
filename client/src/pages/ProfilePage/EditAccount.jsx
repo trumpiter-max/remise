@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Badge, Input, Paper, Typography } from "@mui/material";
+import { Badge, Input, Link, Paper, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import './ProfilePage.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { Stack} from '@mui/material';
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { putUser } from "../../api/userapi";
 
 function EditAccountDetail(){
@@ -30,11 +30,7 @@ function EditAccountDetail(){
             address1
         };
         try {
-            const response = await putUser(updatedProfile);
-            const {message}=response;
-            if(message.msgBody){
-                throw new Error("Fail to update!");
-            }
+            const response = await putUser({username:username1,email:email1});
             console.log(updatedProfile);
             if (username1)localStorage.setItem('username', username1);
             if (name1) localStorage.setItem('name', name1);
@@ -45,8 +41,6 @@ function EditAccountDetail(){
             throw new Error("Fail to save user information!", error);
             
         }
-        
-        
         navigate('/account');
     };
 
@@ -129,7 +123,7 @@ function EditAccountDetail(){
                         <td></td>              
                     </tr>
                 </table>
-                <Button onClick={handleSave}>Save</Button>
+                <Button onClick={handleSave} aria-label="save-edit-information">Save</Button>
             </form>
         </Paper>
     );

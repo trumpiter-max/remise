@@ -52,6 +52,7 @@ function FooterComponent() {
               src={logo}
               style={logoStyle}
               alt="logo of sitemark"
+              loading='lazy'
             />
           </Box>
           <Typography variant="body2" fontWeight={600} gutterBottom>
@@ -160,30 +161,6 @@ function FooterComponent() {
           color: 'text.secondary',
         }}
       >
-        {/* <IconButton
-          color="inherit"
-          href="https://github.com/mui"
-          aria-label="GitHub"
-          sx={{ alignSelf: 'center' }}
-        >
-          <FacebookIcon />
-        </IconButton>
-        <IconButton
-          color="inherit"
-          href="https://twitter.com/MaterialUI"
-          aria-label="X"
-          sx={{ alignSelf: 'center' }}
-        >
-          <TwitterIcon />
-        </IconButton>
-        <IconButton
-          color="inherit"
-          href="https://www.linkedin.com/company/mui/"
-          aria-label="LinkedIn"
-          sx={{ alignSelf: 'center' }}
-        >
-          <LinkedInIcon />
-        </IconButton> */}
       </Stack>
     </Box>
   </Container>

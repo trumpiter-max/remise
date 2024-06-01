@@ -1,6 +1,4 @@
 import axiosClient from "./axiosClient";
-import axios from 'axios';
-
 const cache = new Map();
 
 export const getFlashSaleProduct = async () => {

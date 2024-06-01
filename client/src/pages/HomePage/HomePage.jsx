@@ -20,6 +20,7 @@ function Deals() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedDiscountRate, setSelectedDiscountRate] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
+  const [selectedQuantity, setSelectedQuantity] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -73,6 +74,13 @@ function Deals() {
       filteredData = filteredData.sort((a, b) => a.price - b.price);
     }
 
+    if (selectedQuantity === 'asc') {
+      filteredData = filteredData.sort((a, b) => b.quantity_sold - a.quantity_sold);
+    }
+    else if (selectedQuantity === 'desc') {
+      filteredData = filteredData.sort((a, b) => a.quantity_sold - b.quantity_sold);
+    }
+    
     setVisibleProducts(filteredData.slice(0, itemsPerPage));
   }
 
@@ -86,7 +94,7 @@ function Deals() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-          <Button onClick={handleSearch}>
+          <Button onClick={handleSearch} aria-label='search-product'>
             <SearchIcon />
           </Button>
         </IconButton>
@@ -131,10 +139,19 @@ function Deals() {
           <MenuItem value="asc">{t("priceascending")}</MenuItem>
           <MenuItem value="desc">{t("pricedescending")}</MenuItem>
         </Select>
-        <Button color="primary" variant="contained" size="small" component="a" onClick={handleFilter} target="_blank">{t("filterbutton")}</Button>
+        <Select
+          value={selectedQuantity}
+          onChange={(e) => setSelectedQuantity(e.target.value)}
+          displayEmpty
+          inputProps={{ 'aria-label': 'quantity' }}>
+          <MenuItem value="">{t("allquantity")}</MenuItem>
+          <MenuItem value="asc">{t("quantityascending")}</MenuItem>
+          <MenuItem value="desc">{t("quantitydescending")}</MenuItem>
+        </Select>
+        <Button color="primary" variant="contained" size="small" component="a" onClick={handleFilter} target="_blank" aria-label='btn-filter'>{t("filterbutton")}</Button>
       </paper>
       
-      <Button color="primary" variant="text" size="small" component="a" href="/searchform/" target="_blank"> {t("aifilter")} </Button>
+      <Button color="primary" variant="text" size="small" component="a" href="/searchform/" aria-label='btn-aifilter' target="_blank"> {t("aifilter")} </Button>
       <Grid sx={{display: 'flex'}} mb={1} mt={2}>
         <Typography color={'primary'} sx={{mr:1}} variant='h5'>
           {searchTerm ? 'Search results' : 'Recommendation'}
@@ -142,7 +159,7 @@ function Deals() {
       </Grid>
       <ProductList productList={visibleProducts} type={1} />
       <Grid mt={1} className="load-more">
-        <Button onClick={loadMore} className="btn-grad" disabled={isLoading || visibleProducts.length >= allProducts.length}>
+        <Button onClick={loadMore} className="btn-grad" disabled={isLoading || visibleProducts.length >= allProducts.length} aria-label='load-more'>
           {isLoading ? 'Loading...' : 'Load More'}
         </Button>
       </Grid>

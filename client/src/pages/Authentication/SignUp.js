@@ -24,33 +24,12 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
-
-
-// const handleSignupSubmit=async(value)=>{
-//   const { username, email, password } = value;
-  // const signUpData={
-  //   email,
-  //   username,
-  //   password
-  // }
-//   console.log('Form submitt: ', JSON.stringify(signUpData));
-//   register(JSON.stringify(signUpData));
-//   try {
-//     // const response = await axiosClient.post('api/signup', value);
-//     const response = await register(JSON.stringify(signUpData));
-//     console.log('Registration successful: ', response);
-//   }
-//   catch(error){
-//     console.log('Error during registration: ', error);
-//   }
-// };
 export default function SignUp() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState('');
-  const handleSignupSubmit=async(value)=>{
+  const [isSubmit, setIsSubmitForm]= useState(false);
+  const handleSignupSubmit= async(value)=>{
     const { username, email, password } = value;
     const signUpData={
       email,
@@ -61,11 +40,13 @@ export default function SignUp() {
     try {
       // const response = await axiosClient.post('api/signup', value);
       const response = await register(JSON.stringify(signUpData));
-      console.log('Registration successful: ', response);
+     if (!response.message.msgError){
       setRegisterSuccess('Here is a gentle confirmation that your action was successful.');
       setIsRegistered(true);
       localStorage.setItem('username', username);
-      localStorage.getItem('email', email)
+      localStorage.setItem('email', email)
+     }
+     setIsSubmitForm(true);
     }
     catch(error){
       console.log('Error during registration: ', error);
@@ -90,11 +71,17 @@ export default function SignUp() {
             <h1>REMISE</h1>
         </Typography>
         <RegisterForm onSubmit={handleSignupSubmit}/>
-        {/* <Register onSubmit={console.log('OK')}/> */}
-          {isRegistered && (
+          {isSubmit&& (isRegistered ?
+          (
             <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
             {registerSuccess}
             </Alert>
+          ):
+          (
+            <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+            {registerSuccess}
+            </Alert>
+          )
           )}
         </Box>
         <Copyright sx={{ mt: 5 }}/>

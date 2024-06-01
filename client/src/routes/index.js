@@ -6,8 +6,8 @@ import SignIn from "../pages/Authentication/SignIn";
 import SignUp from "../pages/Authentication/SignUp";
 import SearchForm from "../components/FillterProduct/SearchForm";
 import Dashboard from "../pages/ProductPage/Dashboard";
-import Account from "../pages/UserPages/ProfilePage/Account";
-import Notice from "../pages/UserPages/ProfilePage/Notice";
+import Account from "../pages/UserPages/Account";
+import NoticePage from "../pages/UserPages/Notice";
 import EditAccount from "../pages/ProfilePage/EditAccount";
 import FavoriteProduct from "../pages/ProductPage/FavoriteProduct";
 export const routes=[
@@ -58,7 +58,7 @@ export const routes=[
     },
     {
         path:'/notice',
-        page: Notice,
+        page: NoticePage,
         isShowHeader:true,
     },
     {

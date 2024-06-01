@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Grid, IconButton, InputBase, Paper, Typography } from '@mui/material';
-import ProductList from '../../components/Product/ProductList';
+import { useState, useEffect } from 'react';
 
 function FilteredProduct() {
     const [allProducts, setAllProducts] = useState([]); 

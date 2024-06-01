@@ -12,13 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { login } from '../../api/signinapi';
 import { Alert } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import ReCAPTCHA from "react-google-recaptcha";
-
-import i18n from "i18next";
-import { useTranslation } from "react-i18next";
+import {useNavigate} from 'react-router-dom'
+import { login } from '../../api/userapi';
 
 function onChange(value) {
   console.log("Captcha value:", value);
@@ -27,11 +25,12 @@ function onChange(value) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const { t, i18n } = useTranslation();
-
+  // const { t, i18n } = useTranslation();
+  const navigate= useNavigate();
   const [loginError, setLoginError] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState('');
+  const [isSubmitForm, setIsSubmitForm] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -40,21 +39,16 @@ export default function SignIn() {
     try {
       const response = await login(JSON.stringify({ email, password }));
       console.log(JSON.stringify({ email, password }))
-      console.log(response.success)
       const {message}=response;
-      // console.log(message.msgBody)
       if (message.msgError===false) {
         console.log('User logged in successfully');
         console.log(response)
         setLoginError(false);
         setLoginSuccess('Here is a gentle confirmation that your action was successful.');
         setIsRegistered(true);
-      } else {
-        console.log('User login failed');
-        setLoginError(true);
-        setLoginSuccess('Registration failed. Please try again.');
-        setIsRegistered(false);
+        navigate('..');
       }
+      setIsSubmitForm(true);
     } catch (error) {
       console.error('Sign in error:', error);
       setLoginError(true);
@@ -120,14 +114,19 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              aria-label='btn-signin'
             >
               Sign In
               
-            </Button>
-            {isRegistered && (
-              <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+            </Button>{isSubmitForm&&
+              (isRegistered ?
+              (<Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
               {loginSuccess}
-              </Alert>
+              </Alert>)
+              :
+              (<Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+              {loginSuccess}
+              </Alert>)
               )}
             <Grid container>
               <Grid item xs>

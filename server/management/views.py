@@ -8,6 +8,11 @@ from rest_framework.decorators import action
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from .utils.ranking import rank_brand
+from django.db.models import Count
+from rest_framework.exceptions import ValidationError
+import threading
+import asyncio
 
 # For caching
 from django.core.cache import cache
@@ -111,17 +116,47 @@ class ProductViewSet(viewsets.ModelViewSet):
         queryset = data
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
-    
-    
+        
     def get_queryset(self):
+        smart = self.request.query_params.get('smart', 'false').lower() == 'true'
+        category = self.request.query_params.get('category')
         keyword = self.request.query_params.get('keyword')
         source = self.request.query_params.get('source')
         discount_rate = self.request.query_params.get('discount_rate', 'true').lower() == 'true'
         asc = self.request.query_params.get('asc', 'true').lower() == 'true'
+        feature = self.request.query_params.get('feature')
+        brand = self.request.query_params.get('brand')
         order = '' if asc else '-'
+
+        location = "Viet Nam"
+        category_list = ["smart phone", 
+                        "book",
+                        "houseware",
+                        "accessory",
+                        "home electric",
+                        "cosmetics",
+                        "sportswear",
+                        "media",
+                        "women clothes",
+                        "convenient store product",
+                        "men clothes",
+                        "laptop accessories",
+                        "men shoes",
+                        ]
 
         try:
             queryset = Product.objects.all()
+
+            if smart:
+                products_in_category = queryset.filter(category=category)
+                brands_with_count = products_in_category.values("brand").annotate(count=Count("brand"))
+                brand_list = [item["brand"] for item in brands_with_count]
+                choice = int(category)
+                result = asyncio.run(rank_brand(category_list[choice-1], list(brand_list), location, feature))
+
+            if category:
+                    choice = int(category)
+                    queryset = queryset.filter(category=choice)
 
             if keyword:
                 queryset = queryset.filter(title__icontains=keyword)
@@ -129,9 +164,13 @@ class ProductViewSet(viewsets.ModelViewSet):
             if source:
                 queryset = queryset.filter(url__icontains=source)
 
+            if brand:
+                queryset = queryset.filter(brand__icontains=brand)
+
             queryset = queryset.order_by(f'{order}title', f'{order}discount', f'{order}discount_rate')
+            
         except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            raise ValidationError({"error": ["You don't have enough permission or something causes trouble"]})
 
         return queryset
 

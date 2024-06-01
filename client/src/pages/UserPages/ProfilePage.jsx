@@ -2,7 +2,6 @@ import React from 'react'
 import './ProfilePage.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-import ProductFlashSale from '../../../components/HomePage/ProductFlashSale'
 import { Badge, Button, Link, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
@@ -38,11 +37,6 @@ function ProfilePage() {
       </div>
       <div className='profile-body'>
         <SearchInput></SearchInput>
-        <Stack spacing={2}>
-          <ProductFlashSale/>
-          <ProductFlashSale/>
-          <ProductFlashSale/>
-        </Stack>
       </div>
     </div>
     </div>

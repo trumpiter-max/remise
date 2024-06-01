@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './ProductPage.css'
-import { Button, Divider, Grid, Pagination, Typography } from '@mui/material'
+import { Button, Divider, Grid, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack';
 import { red } from '@mui/material/colors'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useParams } from 'react-router-dom';
 import { getDetailProduct } from '../../api/product';
-import { addNotification } from '../../components/NotificationSlice/notificationSlice';
-import { useDispatch, useSelector } from 'react-redux';
 
 function ProductPage() {
   const {id}=useParams();
-  const dispatch = useDispatch();
   const [product,setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -29,11 +26,7 @@ function ProductPage() {
     fetchProduct();
   }, [id]);
   function handleFavoriteIcon () {
-    const dataProduct=product;
-    dispatch(addNotification(dataProduct));
-    console.log('ok');
-    // const notifications = useSelector((state) => state.notifications);
-    // console.log(notifications);
+    // const dataProduct=product;
   }
   if (loading) {
     return <p>Loading...</p>;
@@ -54,7 +47,7 @@ function ProductPage() {
         <Grid className='product-react'  style={{position:'relative', minWidth:200, paddingRight:20, textAlign:'left'}}>
           <Typography sx={{color:red[700], fontWeight:700, maxWidth:500}}>{product.title}</Typography>
           <Grid sx={{display:'flex', flexDirection: 'row', position:'absolute', top:0, right:0}}>
-            <Button onClick={handleFavoriteIcon()}>
+            <Button onClick={handleFavoriteIcon()} aria-label='click-favorite-icon'>
               <FavoriteBorderIcon sx={{cursor:'pointer'}}/>
             </Button>
           </Grid>
@@ -70,7 +63,7 @@ function ProductPage() {
           <Typography sx={{maxWidth:500, textAlign:'left'}}>
             {product.description}
           </Typography>
-          <Button sx={{maxWidth:500, textAlign:'left'}} href={product.url}>
+          <Button sx={{maxWidth:500, textAlign:'left'}} href={product.url} aria-label='btn-buy-now'>
             Buy Now
           </Button>
           
@@ -79,7 +72,6 @@ function ProductPage() {
       {/* <TablePaginationDemo/> */}
       <div className='product-similar' >
         {/* <h5>Relative products</h5> */}
-        {/* <ProductFlashSale/> */}
       </div>
     </Grid>
     <Divider/>

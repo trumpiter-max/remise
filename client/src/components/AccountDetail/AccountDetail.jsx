@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link, Paper, Typography } from "@mui/material";
+import { Grid, Link, Paper, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { getUser } from "../../api/userapi";
 
 export default function AccountDetail(){
-    // const username=localStorage.getItem('username');
     const name=localStorage.getItem('name');
-    // const email=localStorage.getItem('email');
+    // const token=localStorage.getItem('token');
     const phone=localStorage.getItem('phone');
+    // const username=localStorage.getItem('username');
     const address=localStorage.getItem('address');
-    const [user, setUser]=useState(null)
+    const [user, setUser]=useState({})
     const [error, setError]= useState(null)
     useEffect(()=>{
         const fetchUser= async()=>{
           try{
             const response = await getUser();
-            if (response != 200){
-              throw new Error('Network response was not ok');
-            }
+            console.log(response);
+           
             setUser(response);
+            localStorage.setItem("username",response.username);
+            localStorage.setItem("email",response.email);
           } catch(error){
             setError(error);
           }
@@ -28,48 +29,47 @@ export default function AccountDetail(){
 
     return(
         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Grid style={{ display: 'flex', alignItems: 'center' }}>
                 <Typography textAlign={'left'}><h3>Personal information</h3></Typography>
-                <div style={{display:'absolute', top:0, right:0}}>
-                <Button style={{ height: 40}}>
+                <Grid style={{display:'absolute', top:0, right:0}}>
+                <Button style={{ height: 40, marginLeft:'20px'}} aria-label="edit-information-about-user">
                     <Link href = "/editaccount"  sx={
                         {textDecoration: 'none'}
-                    }>Chỉnh sửa thông tin người dùng</Link>
+                    }>CHỈNH SỬA</Link>
                 </Button>
-                </div>
-            </div>
+                </Grid>
+            </Grid>
             <form>
                 <table class="table_infor">
                     <tr className="row1">
                         <td className="usernameLabel" 
-                            style={{paddingTop: 30,
-                                    textAlign: "right"}}>
-                            <label>Tên đăng nhập</label>
+                            style={{textAlign: "right"}}>
+                            <Typography>Tên đăng nhập</Typography>
                         </td>
 
                         <td className="usernameInput"style={{paddingTop: 30}}>
-                            <label style={{height: 40}}>{(user)?`${user.username}`:''}</label>
+                            <Typography style={{height: 40, textWrap:"wrap"}}>{user.username}</Typography>
                         </td>
                     </tr>
                     <tr>
                     <td 
-                        style={{paddingTop: 20,
+                        style={{
                                 textAlign: "right"}}>
-                            <label>Tên</label>
+                            <Typography>Tên</Typography>
                         </td>
 
                         <td style={{paddingTop: 20}}>
-                        <label style={{height: 40, textAlign:"left"}}>{name?`${name}`:''} </label>
+                        <Typography>{name?`${name}`:''} </Typography>
                         </td>
                     </tr>
                     <tr className="email">
                     <td 
                         style={{paddingTop: 20,
                                 textAlign: "right"}}>
-                            <label>Email</label>
+                            <Typography>Email</Typography>
                         </td>
-                        <td style={{paddingTop: 20, textAlign:"left"}}>
-                        {(user)?`${user.email}`:''}
+                        <td style={{paddingTop:20, textWrap:"wrap"}}>
+                            {(user)?`${user.email}`:''}
                         </td>
                     </tr>
                     
