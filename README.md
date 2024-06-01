@@ -51,3 +51,9 @@ You can find more details how this website works at this [wiki](https://github.c
 ## Any problems
 
 Feel free to open [issue](https://github.com/trumpiter-max/remise/issues) for any problems of this website.
+
+## Members list
+-	Lê Huy Hùng – 21520888
+-	Lê Quốc Anh – 22520049
+-	Cao Thị Kim Cẩm – 21520641
+-	Trần Huỳnh Ngọc – 21522384
