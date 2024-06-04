@@ -41,6 +41,8 @@ export default function SignUp() {
       // const response = await axiosClient.post('api/signup', value);
       const response = await register(JSON.stringify(signUpData));
      if (!response.message.msgError){
+      localStorage.setItem('username', username);
+      localStorage.setItem('email', email)
       setRegisterSuccess('Here is a gentle confirmation that your action was successful.');
       setIsRegistered(true);
       localStorage.setItem('username', username);

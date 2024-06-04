@@ -5,7 +5,7 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import AccountDetail from '../../components/AccountDetail/AccountDetail'
 import { Badge, Button, Stack, Typography } from '@mui/material';
 import { Link } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { logout } from '../../api/userapi';
 
 function Account() {
@@ -17,15 +17,18 @@ function Account() {
       // const response = await axiosClient.post('api/signup', value);
       const username=localStorage.getItem('username');
       const email=localStorage.getItem('email');
-      const response = await logout({username, email});
-      console.log('Registration successful: ', response);
-      localStorage.setItem('currentUser', null);
-      navigate('..'); // Chuyển hướng đến trangchủ
+      localStorage.setItem('currentUser', false);
+      navigate('..');
+      // console.log('Registration successful: ', response);
+      // const response = await logout({username, email});
     }
     catch(error){
       console.log('Error during registration: ', error);
     }
   };
+  // if(localStorage.getItem('currentUser') === false) 
+  // return navigate ('..');
+  // else
   return (
     <div className='profile'>
       <div className='left-side-bar'>

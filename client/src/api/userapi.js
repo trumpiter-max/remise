@@ -1,6 +1,5 @@
 //
 import axiosClient from './axiosClient';
-import Cookies from 'js-cookie'
 export const register =async (user)=>{
     try {
         const response = await axiosClient.post("/authentication/register", user);
@@ -28,6 +27,7 @@ export const login = async (user) => {
       const response = await axiosClient.post("/authentication/login", user);
       if (response.status === 200) {
         localStorage.setItem('currentUser', JSON.stringify(response.data));
+        localStorage.setItem('csrftoken', response.getCookieValue('csrftoken'));
         return {
           message: {
             msgBody: 'Sign in successfully',
@@ -55,7 +55,8 @@ export const login = async (user) => {
       if (response.status === 200) {
         // Save the user data to localStorage for fast authentication
         localStorage.setItem('currentUser', JSON.stringify(response.data));
-        // localStorage.setItem('token', response.data);
+        // localStorage.setItem('token', response.Cookies.get('csrftoken'));
+        // localStorage.setItem('csrftoken', getCookieValue('csrftoken'));
         return {
           message: {
             msgBody: 'Logout successfully',

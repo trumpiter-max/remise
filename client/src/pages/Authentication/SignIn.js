@@ -39,15 +39,15 @@ export default function SignIn() {
     try {
       const response = await login(JSON.stringify({ email, password }));
       console.log(JSON.stringify({ email, password }))
-      const {message}=response;
-      if (message.msgError===false) {
+      localStorage.setItem('email', email);
+      // if (response.status==200) {
         console.log('User logged in successfully');
         console.log(response)
         setLoginError(false);
         setLoginSuccess('Here is a gentle confirmation that your action was successful.');
         setIsRegistered(true);
         navigate('..');
-      }
+      // }
       setIsSubmitForm(true);
     } catch (error) {
       console.error('Sign in error:', error);
@@ -69,6 +69,9 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
+          <Typography>
+            <h1>REMISE</h1>
+        </Typography>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
