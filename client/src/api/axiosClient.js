@@ -1,10 +1,12 @@
 import axios from 'axios'
 import Cookies from 'js-cookie';
 
-const csrfToken = Cookies.get('csrftoken');
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+const csrftoken = Cookies.get("csrftoken");
+
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
+
 
 const axiosClient = axios.create({
     // baseURL:`${process.env.REACT_APP_API_URL}`,
@@ -13,19 +15,14 @@ const axiosClient = axios.create({
     timeout:5000,//optional
     headers: {
         'Content-Type': 'application/json',
-        'X-Csrftoken': csrfToken,  // Thêm CSRF token vào header
+        'X-Csrftoken': csrftoken+'1'  // Thêm CSRF token vào header
     },
 })
 
 // Interceptors
 // Add a request interceptor
-axiosClient.interceptors.request.use(
+axios.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
-    const token = localStorage.getItem('token'); // Or any other method of getting a token
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
     return config;
   }, function (error) {
     // Do something with request error
@@ -33,7 +30,7 @@ axiosClient.interceptors.request.use(
   });
 
 // Add a response interceptor
-axiosClient.interceptors.response.use(function (response) {
+axios.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;

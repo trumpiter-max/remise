@@ -38,7 +38,7 @@ function HeaderComponent() {
   }, []);
 
   const handleIconClick = () => {
-    if (currentUser) {
+    if (currentUser!==false) {
       navigate('/account');
     }
   };
@@ -102,20 +102,28 @@ function HeaderComponent() {
                   <Button color="primary" variant="contained" size="small" component="a" href="signup" target="_blank" aria-label='btn-signup'>{t("signup")}</Button>
                 </div>
               ) : (
-                <div style={{display:'flex'}}>
-                <div style={{marginRight:'20px'}}>
-                  <select>
-                      {languages.map((item) => {
-                      return (
-                        <option key={item.value} value={item.value}>
+                <Grid style={{display:'flex', alignItems:'center'}}>
+                <div style={{marginRight:20}}>
+                <FormControl variant="outlined" maxWidth >
+                    <InputLabel id="language-select-label">Language</InputLabel>
+                    <Select
+                      labelId="language-select-label"
+                      value={lang}
+                      onChange={changeLanguage}
+                      label="Language"
+                    >
+                      {languages.map((item) => (
+                        <MenuItem key={item.value} value={item.value}>
                           {item.text}
-                        </option>
-                      );
-                    })}
-                    </select>
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 </div>
+                <div style={{textAlign:'center'}}>
                 <AccountCircleIcon style={{cursor:'pointer'}} onClick={handleIconClick} color='primary'/>
                 </div>
+                </Grid>
               )}
             </Grid>
           </Toolbar>

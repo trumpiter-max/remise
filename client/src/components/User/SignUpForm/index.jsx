@@ -50,7 +50,7 @@ function RegisterForm(props) {
             <Avatar className='avatar' sx={{margin: '0 auto', bgcolor:'primary.main'}}>
                 <LockOutlined></LockOutlined>
             </Avatar>
-            <Typography className='title' component="h3" variant="h5" mt={2}>
+            <Typography className='title' component="h3" variant="h5" mt={2} textAlign={'center'}>
                 SIGN UP
             </Typography>
             <form onSubmit={form.handleSubmit(submitHandler)}>
